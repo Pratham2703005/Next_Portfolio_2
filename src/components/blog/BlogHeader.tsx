@@ -1,6 +1,6 @@
 export default function BlogHeader() {
   return (
-    <div className="text-center mb-12">
+    <div className="text-center mb-2 md:mb-12">
       <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
         Blogs
       </h1>

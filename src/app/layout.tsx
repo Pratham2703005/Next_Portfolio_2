@@ -79,7 +79,7 @@ export default function RootLayout({
               
               {/* Main content container */}
               <Navbar />
-              <main className="flex-1 relative z-10">
+              <main className="flex-1 relative overflow-x-hidden z-10 max-w-screen">
                 {children}
               </main>
             </div>

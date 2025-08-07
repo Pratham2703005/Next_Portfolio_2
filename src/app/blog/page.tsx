@@ -138,8 +138,8 @@ export default async function BlogPage({
 
   return (
     <>
-      <div className="max-w-8xl px-10 mx-auto text-white">
-        <div className="container mx-auto px-4 py-20">
+      <div className="max-w-8xl px-2 md:px-10 mx-auto text-white">
+        <div className="container mx-auto md:px-4 py-20">
           {/* Server-rendered header */}
           <BlogHeader />
           
