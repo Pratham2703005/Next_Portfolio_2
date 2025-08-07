@@ -1,50 +1,15 @@
-'use client';
-
-import { useState, useEffect } from 'react';
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
-import { Search, Plus } from 'lucide-react';
+import { auth } from '@/utils/auth';
+import { Plus } from 'lucide-react';
 import Link from 'next/link';
 
-interface BlogControlsProps {
-  initialSearch: string;
-}
 
-export default function BlogControls({ initialSearch }: BlogControlsProps) {
-  const { data: session } = useSession();
-  const router = useRouter();
-  const [searchTerm, setSearchTerm] = useState(initialSearch);
-  const [mount, setMount] = useState(false)
-  
+export async function BlogControls() {
+  const  session = await auth();
   const isAdmin = session?.user?.email === 'pk2732004@gmail.com';
 
-  useEffect(() => {
-    const debounceTimer = setTimeout(() => {
-      const params = new URLSearchParams();
-      if (searchTerm) params.set('search', searchTerm);
-      
-      const url = `/blog${params.toString() ? `?${params}` : ''}`;
-      router.push(url);
-    }, 500);
-
-    return () => clearTimeout(debounceTimer);
-  }, [searchTerm, router]);
-  useEffect(()=>{
-    setMount(true)
-  },[])
 
   return (
-    <div className="mb-8 flex flex-col md:flex-row gap-4 items-center justify-between">
-{mount && (      <div className="relative flex-1 max-w-md">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-        <input
-          type="text"
-          placeholder="Search blogs..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full pl-10 pr-4 py-2 border border-gray-700 rounded-lg focus:outline-none focus:border-purple-500 transition-colors"
-        />
-      </div>)}
+    <div className="mb-2 flex gap-4 items-center justify-end">
 
       {isAdmin && (
         <Link

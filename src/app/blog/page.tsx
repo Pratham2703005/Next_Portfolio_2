@@ -1,27 +1,26 @@
 import { Suspense } from 'react';
 import { Metadata } from 'next';
 import { prisma } from '@/lib/db';
-import { Prisma } from '@prisma/client';
 import Footer from '@/components/shared/Footer';
 import BlogHeader from '@/components/blog/BlogHeader';
-import BlogControls from '@/components/blog/BlogControls';
 import BlogTable from '@/components/blog/BlogTable';
 import BlogPagination from '@/components/blog/BlogPagination';
+import { BlogControls } from '@/components/blog/BlogControls';
 
 export const metadata: Metadata = {
-  title: 'Blog | Your Portfolio',
-  description: 'Thoughts, insights, and experiences from my journey in tech. Explore articles about web development, programming, and technology.',
+  title: 'Blog | My Portfolio',
+  description: 'Thoughts, insights, and experiences from my journey, so chill.',
   keywords: ['blog', 'tech', 'programming', 'web development', 'tutorials', 'insights'],
   openGraph: {
-    title: 'Blog | Your Portfolio',
-    description: 'Thoughts, insights, and experiences from my journey in tech',
+    title: 'Blog | My Portfolio',
+    description: 'Thoughts, insights, and experiences from my journey, so chill',
     type: 'website',
     url: '/blog',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Blog | Your Portfolio',
-    description: 'Thoughts, insights, and experiences from my journey in tech',
+    title: 'Blog | My Portfolio',
+    description: 'Thoughts, insights, and experiences from my journey, so chill',
   },
 };
 
@@ -62,36 +61,14 @@ interface BlogsResponse {
 
 async function getBlogs(
   page: number = 1,
-  limit: number = 10,
-  search: string = '',
-  sortBy: string = 'createdAt',
-  sortOrder: string = 'desc'
+  limit: number = 10
 ): Promise<BlogsResponse> {
   try {
     const skip = (page - 1) * limit;
 
-    // Build where clause
-    const where: Prisma.BlogWhereInput = {
-      published: true,
-    };
-
-    if (search) {
-      where.OR = [
-        { title: { contains: search, mode: 'insensitive' } },
-        { content: { contains: search, mode: 'insensitive' } },
-        { excerpt: { contains: search, mode: 'insensitive' } },
-      ];
-    }
-
-    // Build orderBy clause
-    const orderBy: Prisma.BlogOrderByWithRelationInput = {
-      [sortBy]: sortOrder as 'asc' | 'desc',
-    };
 
     const [blogs, totalCount] = await Promise.all([
       prisma.blog.findMany({
-        where,
-        orderBy,
         skip,
         take: limit,
         include: {
@@ -110,7 +87,7 @@ async function getBlogs(
           },
         },
       }),
-      prisma.blog.count({ where }),
+      prisma.blog.count(),
     ]);
     
 
@@ -157,30 +134,24 @@ export default async function BlogPage({
 ) {
   const s = await searchParams;
   const page = Number(s.page) || 1;
-  const search = (s.search as string) || '';
-  const sortBy = (s.sortBy as string) || 'createdAt';
-  const sortOrder = (s.sortOrder as string) || 'desc';
-  
-  const initialData = await getBlogs(page, 10, search, sortBy, sortOrder);
+  const initialData = await getBlogs(page, 10);
 
   return (
     <>
-      <div className="max-w-7xl mx-auto text-white">
+      <div className="max-w-8xl px-10 mx-auto text-white">
         <div className="container mx-auto px-4 py-20">
           {/* Server-rendered header */}
           <BlogHeader />
           
           {/* Client component for search and controls */}
           <Suspense fallback={<div>Loading controls...</div>}>
-            <BlogControls initialSearch={search} />
+            <BlogControls/>
           </Suspense>
           
           {/* Server-rendered blog table */}
           <BlogTable 
             blogs={initialData.blogs}
-            sortBy={sortBy}
-            sortOrder={sortOrder}
-            totalCount={initialData.pagination.totalCount}
+            
           />
           
           {/* Server-rendered pagination */}

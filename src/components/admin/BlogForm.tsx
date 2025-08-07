@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Save, Eye, Plus, X } from 'lucide-react';
+import { Save, Plus, X } from 'lucide-react';
 import dynamic from 'next/dynamic';
 
 const TiptapEditor = dynamic(() => import('@/components/ui/TiptapEditor'), {
@@ -109,12 +109,6 @@ export default function BlogForm({ initialData, blogId, mode }: BlogFormProps) {
     }
   };
 
-  const handlePreview = () => {
-    // Store form data in localStorage for preview
-    localStorage.setItem('blogPreview', JSON.stringify(formData));
-    window.open('/admin/blogs/preview', '_blank');
-  };
-
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Title */}
@@ -127,7 +121,7 @@ export default function BlogForm({ initialData, blogId, mode }: BlogFormProps) {
           id="title"
           value={formData.title}
           onChange={(e) => handleInputChange('title', e.target.value)}
-          className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-purple-500 transition-colors text-white"
+          className="w-full px-4 py-3  border border-gray-700 rounded-md focus:outline-none focus:border-purple-500 transition-colors text-white"
           placeholder="Enter blog title..."
           required
         />
@@ -145,7 +139,7 @@ export default function BlogForm({ initialData, blogId, mode }: BlogFormProps) {
             id="category"
             value={formData.category}
             onChange={(e) => handleInputChange('category', e.target.value)}
-            className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-purple-500 transition-colors text-white"
+            className="w-full px-4 py-3  border border-gray-700 rounded-md focus:outline-none focus:border-purple-500 transition-colors text-white"
             placeholder="e.g., Technology, Tutorial, Personal"
           />
         </div>
@@ -161,13 +155,13 @@ export default function BlogForm({ initialData, blogId, mode }: BlogFormProps) {
               value={tagInput}
               onChange={(e) => setTagInput(e.target.value)}
               onKeyPress={handleKeyPress}
-              className="flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-purple-500 transition-colors text-white"
+              className="flex-1 px-4 py-3  border border-gray-700 rounded-md focus:outline-none focus:border-purple-500 transition-colors text-white"
               placeholder="Add a tag..."
             />
             <button
               type="button"
               onClick={handleAddTag}
-              className="px-4 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors"
+              className="px-4 py-3 bg-purple-600 hover:bg-purple-700 rounded-md transition-colors"
             >
               <Plus size={20} />
             </button>
@@ -214,7 +208,7 @@ export default function BlogForm({ initialData, blogId, mode }: BlogFormProps) {
           value={formData.excerpt}
           onChange={(e) => handleInputChange('excerpt', e.target.value)}
           rows={3}
-          className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-purple-500 transition-colors text-white resize-none"
+          className="w-full px-4 py-3  border border-gray-700 rounded-md focus:outline-none focus:border-purple-500 transition-colors text-white resize-none"
           placeholder="Brief description of the blog post (optional - will be auto-generated if empty)"
         />
       </div>
@@ -249,7 +243,7 @@ export default function BlogForm({ initialData, blogId, mode }: BlogFormProps) {
         <button
           type="submit"
           disabled={loading}
-          className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-lg transition-all duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-md transition-all duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? (
             <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
@@ -262,14 +256,6 @@ export default function BlogForm({ initialData, blogId, mode }: BlogFormProps) {
           }
         </button>
 
-        <button
-          type="button"
-          onClick={handlePreview}
-          className="flex items-center justify-center gap-2 px-6 py-3 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-lg transition-colors font-medium"
-        >
-          <Eye size={20} />
-          Preview
-        </button>
       </div>
     </form>
   );

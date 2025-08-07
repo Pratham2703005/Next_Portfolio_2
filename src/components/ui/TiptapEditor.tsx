@@ -52,82 +52,94 @@ export default function TiptapEditor({ value, onChange, placeholder }: TiptapEdi
   }
 
   return (
-    <div className="border border-gray-300 rounded-lg overflow-hidden">
+    <div className="border border-gray-700 rounded-md overflow-hidden">
       {/* Toolbar */}
-      <div className="border-b border-gray-300 bg-[#282c34] p-2 flex flex-wrap gap-1">
+      <div className="border-b border-gray-700 bg-[#282c34] px-3 py-1 flex flex-wrap gap-1">
+        <div className='border-r border-gray-700 px-2'>
+
         <button
           onClick={() => editor.chain().focus().toggleBold().run()}
-          className={`p-2 rounded ${editor.isActive('bold') ? 'bg-gray-900' : 'hover:bg-gray-950'}`}
+          className={`p-2 rounded ${editor.isActive('bold') ? 'bg-[#111418]' : 'hover:bg-[#101010]'}`}
           title="Bold"
-        >
+          >
           <strong>B</strong>
         </button>
         <button
           onClick={() => editor.chain().focus().toggleItalic().run()}
-          className={`p-2 rounded ${editor.isActive('italic') ? 'bg-gray-900' : 'hover:bg-gray-950'}`}
+          className={`p-2 rounded ${editor.isActive('italic') ? 'bg-[#111418]' : 'hover:bg-[#101010]'}`}
           title="Italic"
-        >
+          >
           <em>I</em>
         </button>
         <button
           onClick={() => editor.chain().focus().toggleStrike().run()}
-          className={`p-2 rounded ${editor.isActive('strike') ? 'bg-gray-900' : 'hover:bg-gray-950'}`}
+          className={`p-2 rounded ${editor.isActive('strike') ? 'bg-[#111418]' : 'hover:bg-[#101010]'}`}
           title="Strikethrough"
-        >
+          >
           <span className="line-through">S</span>
         </button>
-        <div className="border-l border-gray-300 mx-1 h-6 self-center"></div>
+          </div>
+        {/* <div className="border-l border-gray-300 mx-1 h-6 self-center"></div> */}
+        <div className='border-r border-gray-700 px-2'>
+
         <button
           onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-          className={`p-2 rounded ${editor.isActive('heading', { level: 1 }) ? 'bg-gray-900' : 'hover:bg-gray-950'}`}
+          className={`p-2 rounded ${editor.isActive('heading', { level: 1 }) ? 'bg-[#111418]' : 'hover:bg-[#101010]'}`}
           title="Heading 1"
-        >
+          >
           H1
         </button>
         <button
           onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
-          className={`p-2 rounded ${editor.isActive('heading', { level: 2 }) ? 'bg-gray-900' : 'hover:bg-gray-950'}`}
+          className={`p-2 rounded ${editor.isActive('heading', { level: 2 }) ? 'bg-[#111418]' : 'hover:bg-[#101010]'}`}
           title="Heading 2"
-        >
+          >
           H2
         </button>
         <button
           onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
-          className={`p-2 rounded ${editor.isActive('heading', { level: 3 }) ? 'bg-gray-900' : 'hover:bg-gray-950'}`}
+          className={`p-2 rounded ${editor.isActive('heading', { level: 3 }) ? 'bg-[#111418]' : 'hover:bg-[#101010]'}`}
           title="Heading 3"
-        >
+          >
           H3
         </button>
-        <div className="border-l border-gray-300 mx-1 h-6 self-center"></div>
+          </div>
+        {/* <div className="border-l border-gray-300 mx-1 h-6 self-center"></div> */}
+        <div className='border-r border-gray-700 px-2'>
+
         <button
           onClick={() => editor.chain().focus().toggleBulletList().run()}
-          className={`p-2 rounded ${editor.isActive('bulletList') ? 'bg-gray-900' : 'hover:bg-gray-950'}`}
+          className={`p-2 rounded ${editor.isActive('bulletList') ? 'bg-[#111418]' : 'hover:bg-[#101010]'}`}
           title="Bullet List"
-        >
+          >
           • List
         </button>
         <button
           onClick={() => editor.chain().focus().toggleOrderedList().run()}
-          className={`p-2 rounded ${editor.isActive('orderedList') ? 'bg-gray-900' : 'hover:bg-gray-950'}`}
+          className={`p-2 rounded ${editor.isActive('orderedList') ? 'bg-[#111418]' : 'hover:bg-[#101010]'}`}
           title="Ordered List"
-        >
+          >
           1. List
         </button>
-        <div className="border-l border-gray-300 mx-1 h-6 self-center"></div>
+        </div>
+        {/* <div className="border-l border-gray-300 mx-1 h-6 self-center"></div> */}
+        <div className='border-r border-gray-700 px-2'>
+
         <button
           onClick={() => editor.chain().focus().toggleBlockquote().run()}
-          className={`p-2 rounded ${editor.isActive('blockquote') ? 'bg-gray-900' : 'hover:bg-gray-950'}`}
+          className={`p-2 rounded ${editor.isActive('blockquote') ? 'bg-[#111418]' : 'hover:bg-[#101010]'}`}
           title="Blockquote"
-        >
+          >
           ❝
         </button>
         <button
           onClick={() => editor.chain().focus().toggleCodeBlock().run()}
-          className={`p-2 rounded ${editor.isActive('codeBlock') ? 'bg-gray-900' : 'hover:bg-gray-950'}`}
+          className={`p-2 rounded ${editor.isActive('codeBlock') ? 'bg-[#111418]' : 'hover:bg-[#101010]'}`}
           title="Code Block"
-        >
+          >
           {'</>'}
         </button>
+          </div>
       </div>
       
       {/* Editor Content */}
