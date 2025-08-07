@@ -1,0 +1,11 @@
+.ProseMirror {
+  background: transparent !important;
+  color: white !important;
+}
+.tiptap pre {
+  background-color: #282c34 !important;
+}
+
+ .tiptap code {
+  background-color: transparent !important;
+}
