@@ -156,11 +156,11 @@ export async function PUT(
 // DELETE /api/blogs/[id] - Delete blog (admin only)
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await auth();
-    
+    const id = (await params).id;
     if (!session?.user?.email || session.user.email !== 'pk2732004@gmail.com') {
       return NextResponse.json(
         { error: 'Unauthorized. Admin access required.' },
@@ -170,7 +170,7 @@ export async function DELETE(
 
     // Check if blog exists
     const existingBlog = await prisma.blog.findUnique({
-      where: { id: params.id },
+      where: {id },
     });
 
     if (!existingBlog) {
@@ -182,12 +182,12 @@ export async function DELETE(
 
     // Delete all related likes first
     await prisma.blogLike.deleteMany({
-      where: { blogId: params.id },
+      where: { blogId: id },
     });
 
     // Delete the blog
     await prisma.blog.delete({
-      where: { id: params.id },
+      where: { id },
     });
 
     return NextResponse.json({ message: 'Blog deleted successfully' });
