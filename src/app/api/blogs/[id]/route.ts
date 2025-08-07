@@ -5,11 +5,13 @@ import { auth } from '@/utils/auth';
 // GET /api/blogs/[id] - Get single blog by ID
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const id = (await params).id;
+
     const blog = await prisma.blog.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: {
         author: {
           select: {

@@ -5,9 +5,11 @@ import { auth } from '@/utils/auth';
 // GET /api/blogs/slug/[slug] - Get single blog by slug
 export async function GET(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
-  const slug = await params.slug;
+  const slug = (await params).slug;
+
+  
   try {
     const blog = await prisma.blog.findUnique({
       where: { slug },

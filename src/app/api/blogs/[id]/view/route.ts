@@ -4,12 +4,14 @@ import { prisma } from '@/lib/db';
 // POST /api/blogs/[id]/view - Increment view count
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const id = (await params).id;
+
     // Check if blog exists
     const blog = await prisma.blog.findUnique({
-      where: { id: params.id },
+      where: {id },
     });
 
     if (!blog) {
@@ -21,7 +23,7 @@ export async function POST(
 
     // Increment view count
     const updatedBlog = await prisma.blog.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         viewCount: {
           increment: 1,
