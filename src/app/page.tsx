@@ -69,7 +69,7 @@ const Home = () => {
           <a 
             href="/contact"
             className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 
-                      text-white px-6 py-1 rounded-md font-medium transition-all transform hover:scale-105 
+                      text-white px-6 py-3 rounded-lg font-medium transition-all transform hover:scale-105 
                       shadow-lg hover:shadow-xl text-center"
           >
             Schedule a Call
@@ -78,7 +78,7 @@ const Home = () => {
             href="/resume.pdf" 
             download
             className="border-2 border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-gray-900 
-                      px-6 py-1 rounded-md font-medium transition-all transform hover:scale-105 text-center"
+                      px-6 py-3 rounded-lg font-medium transition-all transform hover:scale-105 text-center"
           >
             Download Resume
           </a>

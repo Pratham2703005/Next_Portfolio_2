@@ -1,10 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Save, Plus, X } from 'lucide-react';
+import { Save, Eye, Plus, X } from 'lucide-react';
 import dynamic from 'next/dynamic';
-import toast from 'react-hot-toast';
 
 const TiptapEditor = dynamic(() => import('@/components/ui/TiptapEditor'), {
   ssr: false,
@@ -30,7 +29,6 @@ export default function BlogForm({ initialData, blogId, mode }: BlogFormProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [tagInput, setTagInput] = useState('');
-  const [mount, setMount] = useState<boolean>(false); // Add mount state
   const [formData, setFormData] = useState<BlogFormData>(
     initialData || {
       title: '',
@@ -101,22 +99,22 @@ export default function BlogForm({ initialData, blogId, mode }: BlogFormProps) {
         router.push(`/blog/${blog.slug}`);
       } else {
         const error = await response.json();
-        toast.error(`Failed to ${mode} blog ${error.message}`)
+        alert(error.error || `Failed to ${mode} blog`);
       }
     } catch (error) {
-      const err = error as Error;
-      toast.error(`Error ${mode}ing blog: ${err.message}`);
+      console.error(`Error ${mode}ing blog:`, error);
+      alert(`Failed to ${mode} blog`);
     } finally {
       setLoading(false);
     }
   };
 
-  useEffect(()=>{
-    setMount(true);
-  },[])
-  if(!mount){
-    return <> </>;
-  }
+  const handlePreview = () => {
+    // Store form data in localStorage for preview
+    localStorage.setItem('blogPreview', JSON.stringify(formData));
+    window.open('/admin/blogs/preview', '_blank');
+  };
+
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Title */}
@@ -129,7 +127,7 @@ export default function BlogForm({ initialData, blogId, mode }: BlogFormProps) {
           id="title"
           value={formData.title}
           onChange={(e) => handleInputChange('title', e.target.value)}
-          className="w-full px-4 py-3  border border-gray-700 rounded-md focus:outline-none focus:border-purple-500 transition-colors text-white"
+          className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-purple-500 transition-colors text-white"
           placeholder="Enter blog title..."
           required
         />
@@ -147,7 +145,7 @@ export default function BlogForm({ initialData, blogId, mode }: BlogFormProps) {
             id="category"
             value={formData.category}
             onChange={(e) => handleInputChange('category', e.target.value)}
-            className="w-full px-4 py-3 border border-gray-700 rounded-md focus:outline-none focus:border-purple-500 transition-colors text-white"
+            className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-purple-500 transition-colors text-white"
             placeholder="e.g., Technology, Tutorial, Personal"
           />
         </div>
@@ -163,13 +161,13 @@ export default function BlogForm({ initialData, blogId, mode }: BlogFormProps) {
               value={tagInput}
               onChange={(e) => setTagInput(e.target.value)}
               onKeyPress={handleKeyPress}
-              className="flex-1 px-4 py-3 border border-gray-700 rounded-md focus:outline-none focus:border-purple-500 transition-colors text-white"
+              className="flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-purple-500 transition-colors text-white"
               placeholder="Add a tag..."
             />
             <button
               type="button"
               onClick={handleAddTag}
-              className="px-4 py-3 bg-purple-600 hover:bg-purple-700 rounded-md transition-colors"
+              className="px-4 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors"
             >
               <Plus size={20} />
             </button>
@@ -216,7 +214,7 @@ export default function BlogForm({ initialData, blogId, mode }: BlogFormProps) {
           value={formData.excerpt}
           onChange={(e) => handleInputChange('excerpt', e.target.value)}
           rows={3}
-          className="w-full px-4 py-3 border border-gray-700 rounded-lg focus:outline-none focus:border-purple-500 transition-colors text-white resize-none"
+          className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-purple-500 transition-colors text-white resize-none"
           placeholder="Brief description of the blog post (optional - will be auto-generated if empty)"
         />
       </div>
@@ -247,7 +245,7 @@ export default function BlogForm({ initialData, blogId, mode }: BlogFormProps) {
       </div>
 
       {/* Action Buttons */}
-      <div className="pt-6">
+      <div className="flex flex-col sm:flex-row gap-4 pt-6">
         <button
           type="submit"
           disabled={loading}
@@ -264,7 +262,14 @@ export default function BlogForm({ initialData, blogId, mode }: BlogFormProps) {
           }
         </button>
 
-        
+        <button
+          type="button"
+          onClick={handlePreview}
+          className="flex items-center justify-center gap-2 px-6 py-3 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-lg transition-colors font-medium"
+        >
+          <Eye size={20} />
+          Preview
+        </button>
       </div>
     </form>
   );

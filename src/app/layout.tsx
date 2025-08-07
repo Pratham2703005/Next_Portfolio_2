@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   creator: "Pratham Israni",
   openGraph: {
     type: "website",
-    locale: "en_IN",
+    locale: "en_US",
     url: "https://your-portfolio-domain.com",
     title: "Pratham Israni - Full-Stack Developer & Innovation Builder",
     description: "SIH 2024 Finalist specializing in interactive web experiences. Building innovative solutions with modern web technologies.",

@@ -99,7 +99,7 @@ export async function generateMetadata(props : {params : BlogProps}): Promise<Me
   const excerpt = blog.excerpt || blog.content.replace(/<[^>]*>/g, '').substring(0, 160) + '...';
 
   return {
-    title: `${blog.title} | My Portfolio Blog`,
+    title: `${blog.title} | Your Portfolio Blog`,
     description: excerpt,
     keywords: blog.tags.length > 0 ? blog.tags.join(', ') : undefined,
     authors: [{ name: blog.author.name }],
@@ -124,6 +124,20 @@ export async function generateMetadata(props : {params : BlogProps}): Promise<Me
   };
 }
 
+// type BlogProps =  Promise<{slug:string}>;
+
+// export default async function BlogPostPage(
+//   props: {params : BlogProps}
+// ) {
+//   const {slug} = await props.params;
+//   // Track view on server side
+//   const blog = await getBlog(slug, true)
+  
+//   if (!blog) {
+//     notFound();
+//   }
+//   return <BlogPostClient blog={blog}/>;
+// }
 export default async function BlogPostPage(props: {params : BlogProps}) {
   const {slug} = await props.params;
   const blog = await getBlog(slug, true);
@@ -135,3 +149,5 @@ export default async function BlogPostPage(props: {params : BlogProps}) {
 
   return <BlogPostServer blog={blog} session={session} />;
 }
+
+// components/blog/BlogPostServer.tsx (Server Component)

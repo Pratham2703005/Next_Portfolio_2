@@ -3,12 +3,12 @@ Live demo : [Link](https://next-portfolio-three-black.vercel.app)
 
 ![Portfolio Homepage](https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-04-26%20132319-MhyEiitNox34oxJzmGHOlygf51JQwH.png)
 
-A modern, interactive portfolio website showcasing my skills, projects, and offering unique ways to connect. Built with Next.js 15, this portfolio features a blog, interactive games, and a unique messages canvas.
+A modern, interactive portfolio website showcasing my skills, projects, and offering unique ways to connect.
 
 ## 🌟 Features
 
 ### 🏠 Homepage
-A clean, minimalist landing page featuring my name with elegant background artifacts, setting the tone for a professional yet creative portfolio. Includes a dynamic typewriter effect and clear CTAs for contacting me or downloading my resume.
+A clean, minimalist landing page featuring my name with elegant background artifacts, setting the tone for a professional yet creative portfolio.
 
 ### 📋 About Section
 - **Resume**: Download my latest resume
@@ -25,13 +25,6 @@ A showcase of my work across various technologies, demonstrating my growth as a 
 - Technologies used
 - Live demo link
 - GitHub repository link
-
-Featured projects include:
-- **AgraEcom**: A full-stack e-commerce platform with real-time search and admin management
-- **PrithView**: SIH 2024 Finalist project for satellite image analysis
-- **PDF Analyzer**: AI-powered document processing with semantic chunking
-- **Google Docs v1**: Real-time collaborative editor
-- And many more innovative solutions
 
 ![Projects Section](https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-04-26%20132355-BeNaAVlerkyKjd7R513LtqRO1ZZwgK.png)
 
@@ -52,30 +45,17 @@ A collection of interactive games I've developed:
 - **Memory Cards**: Match pairs of cards to test your memory
 - **Snake**: Navigate and grow your snake without hitting walls
 
-### ✍️ Blog
-A full-featured blog system with:
-- Rich text editing with Tiptap editor
-- Tagging and categorization
-- Featured posts
-- View and like tracking
-- SEO-optimized content
-- Admin panel for creating and managing posts
-- Responsive design for all devices
-
 ![Games Section](https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-04-26%20132646-L2Ut1J5YGf9I1cpWke2D0othtNo5f6.png)
 
 ## 🛠️ Tech Stack
 
 This portfolio is built with modern technologies:
 
-- **Frontend**: Next.js 15, React, TypeScript, Tailwind CSS
+- **Frontend**: Next.js, React, Tailwind CSS
 - **Authentication**: NextAuth.js
-- **Database**: MongoDB with Prisma ORM
-- **Rich Text Editor**: Tiptap
-- **UI Components**: Radix UI, shadcn/ui
-- **State Management**: React Hooks, Zustand
-- **Styling**: Tailwind CSS, Framer Motion for animations
-- **Deployment**: Vercel
+- **Database**: MongoDB
+- **ORM**: Prisma
+- **UI Components**: shadcn/ui
 
 ## 🚀 Getting Started
 
@@ -108,19 +88,14 @@ NEXTAUTH_SECRET=your_nextauth_secret
 # Add any other required environment variables
 ```
 
-4. Generate Prisma client
-```bash
-npx prisma generate
-```
-
-5. Run the development server
+4. Run the development server
 ```bash
 npm run dev
 # or
 yarn dev
 ```
 
-6. Open [http://localhost:3000](http://localhost:3000) in your browser to see the portfolio
+5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the portfolio
 
 ## 🤝 Contributing
 

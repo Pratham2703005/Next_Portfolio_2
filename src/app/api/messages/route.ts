@@ -3,69 +3,54 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req:NextRequest){
     try {
-        const {content, isPublic, x, y, userId, user_name, user_image, user_email} = await req.json();
-        
-        // Validate required fields
-        if(!content || typeof x !== 'number' || typeof y !== 'number' || !userId || !user_name || !user_email) {
-            return NextResponse.json(
-                { error: 'Missing required fields: content, x, y, userId, user_name, user_email' },
-                { status: 400 }
-            );
+        const {content, isPublic, x,y, userId, user_name, user_image, user_email} = await req.json();
+        console.log(content , " " , isPublic, " ", x , " ",y ," ", userId, " ", user_name, " ",user_email, " ", user_image);
+        if(!content || !x || !y || !userId || !user_image || !user_name || !user_email) {
+            throw new Error('Need all Credentials')
         }
-        
         const newMessage = await prisma.message.create({
             data: {
                 content,
-                isPublic: Boolean(isPublic),
+                isPublic,
                 x,
                 y,
                 userId,
                 user_name,
-                user_image: user_image || null,
+                user_image,
                 user_email
-            }
-        });
-        
+            }  
+        })
         await prisma.user.update({
             where: {id: userId},
             data:{
                 messages: {
-                    connect: { id: newMessage.id },
+                    connect: { id: newMessage.id }, // 👈 push message to user
                 },
             }
-        });
+        })
+        return NextResponse.json(newMessage);
+    } catch (error ) {
+        if(error instanceof Error) {
+            console.log('message creation trouble')
+            console.log(error.message);
+            return NextResponse.json({error: error.message})
+        }
         
-        return NextResponse.json(newMessage, { status: 201 });
-    } catch (error) {
-        console.error('Message creation error:', error);
-        return NextResponse.json(
-            { error: 'Failed to create message' },
-            { status: 500 }
-        );
     }
 }
 
 export async function DELETE(req:NextRequest){
     try{
-        const {id} = await req.json();
-        
-        if (!id) {
-            return NextResponse.json(
-                { error: 'Message ID is required' },
-                { status: 400 }
-            );
-        }
 
-        // Delete message and get user ID
+        const {id} = await req.json();
+        //updating user 
         const messageUserId = await prisma.message.delete({
             where:{id: id},
             select:{
                 userId:true
             }
-        });
-        
-        // Disconnect message from user
-        if(messageUserId?.userId){
+        })
+        if(messageUserId){
             await prisma.user.update({
                 where: {id :messageUserId.userId},
                 data: {
@@ -73,15 +58,15 @@ export async function DELETE(req:NextRequest){
                         disconnect: {id : id}
                     }
                 }
-            });
+            })
         }
-        
-        return NextResponse.json({success:true});
-    } catch(e){
-        console.error('Message deletion error:', e);
-        return NextResponse.json(
-            { error: 'Failed to delete message' },
-            { status: 500 }
-        );
+        return NextResponse.json({success:true})
+    }catch(e){
+        if(e instanceof Error){
+            console.log('message deletion trouble')
+            console.log(e.message)
+            return NextResponse.json({error:e.message})
+        }
     }
-}
+
+}   

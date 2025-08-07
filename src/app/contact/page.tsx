@@ -11,7 +11,6 @@ import { useSession } from 'next-auth/react';
 import TypeWriter from '@/components/ui/TypeWriter';
 import Footer from '@/components/shared/Footer';
 
-
 // Types
 interface FormData {
   name: string;

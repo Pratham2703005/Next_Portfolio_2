@@ -4,7 +4,6 @@ import { notFound } from 'next/navigation';
 import { prisma } from '@/lib/db';
 import AdminAuthCheck from '@/components/admin/AdminAuthCheck';
 import BlogForm from '@/components/admin/BlogForm';
-import toast from 'react-hot-toast';
 
 interface Blog {
   id: string;
@@ -61,8 +60,7 @@ async function getBlog(id: string): Promise<Blog | null> {
       likeCount: blog._count.likes,
     };
   } catch (error) {
-    const err = error as Error;
-    toast.error(`Error fetching blog: ${err.message}`);
+    console.error('Error fetching blog:', error);
     return null;
   }
 }

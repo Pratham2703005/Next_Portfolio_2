@@ -52,11 +52,10 @@ export default function TiptapEditor({ value, onChange, placeholder }: TiptapEdi
   }
 
   return (
-    <div className="border border-gray-700 rounded-md overflow-hidden">
+    <div className="border border-gray-300 rounded-lg overflow-hidden">
       {/* Toolbar */}
-      <div className="border-b border-gray-700 bg-[#282c34] px-2 flex flex-wrap gap-1">
-        <div className='border-r border-gray-700 px-2'>
-          <button
+      <div className="border-b border-gray-300 bg-[#282c34] p-2 flex flex-wrap gap-1">
+        <button
           onClick={() => editor.chain().focus().toggleBold().run()}
           className={`p-2 rounded ${editor.isActive('bold') ? 'bg-gray-900' : 'hover:bg-gray-950'}`}
           title="Bold"
@@ -77,10 +76,8 @@ export default function TiptapEditor({ value, onChange, placeholder }: TiptapEdi
         >
           <span className="line-through">S</span>
         </button>
-
-        </div>
-        <div className='border-r border-gray-700 px-2'>
-          <button
+        <div className="border-l border-gray-300 mx-1 h-6 self-center"></div>
+        <button
           onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
           className={`p-2 rounded ${editor.isActive('heading', { level: 1 }) ? 'bg-gray-900' : 'hover:bg-gray-950'}`}
           title="Heading 1"
@@ -101,27 +98,22 @@ export default function TiptapEditor({ value, onChange, placeholder }: TiptapEdi
         >
           H3
         </button>
-
-        </div>
-        <div className='border-r border-gray-700 px-2'>
-      
-          <button
+        <div className="border-l border-gray-300 mx-1 h-6 self-center"></div>
+        <button
           onClick={() => editor.chain().focus().toggleBulletList().run()}
           className={`p-2 rounded ${editor.isActive('bulletList') ? 'bg-gray-900' : 'hover:bg-gray-950'}`}
           title="Bullet List"
-          >
+        >
           • List
         </button>
         <button
           onClick={() => editor.chain().focus().toggleOrderedList().run()}
           className={`p-2 rounded ${editor.isActive('orderedList') ? 'bg-gray-900' : 'hover:bg-gray-950'}`}
           title="Ordered List"
-          >
+        >
           1. List
         </button>
-        
-        </div>
-        <div> 
+        <div className="border-l border-gray-300 mx-1 h-6 self-center"></div>
         <button
           onClick={() => editor.chain().focus().toggleBlockquote().run()}
           className={`p-2 rounded ${editor.isActive('blockquote') ? 'bg-gray-900' : 'hover:bg-gray-950'}`}
@@ -136,7 +128,6 @@ export default function TiptapEditor({ value, onChange, placeholder }: TiptapEdi
         >
           {'</>'}
         </button>
-        </div>
       </div>
       
       {/* Editor Content */}

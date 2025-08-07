@@ -4,51 +4,47 @@ import SkillCard from './SkillCard';
 
 export default function SkillsSection() {
   const skillCategories = [
-  {
-    title: "Frontend",
-    skills: [
-      "Next.js",
-      "React.js",
-      "HTML5",
-      "CSS3",
-      "JavaScript",
-      "TypeScript",
-      "Tailwind CSS",
-      "Redux Toolkit",
-      "Zustand",
-
-    ],
-  },
-  {
-    title: "Backend & Databases",
-    skills: [
-      "Node.js",
-      "Express",
-      "MongoDB",
-      "Firebase",
-      "Prisma",
-      "Cloudinary",
-
-    ],
-  },
-  {
-    title: "Auth & Validation",
-    skills: ["Zod", "NextAuth", "OAuth", "JWT", "Clerk", "EmailJS",],
-  },
-  {
-    title: "AI & APIs",
-    skills: ["OpenAI", "Mistral", "DeepSeek", "Gemini", "HuggingFace"],
-  },
-  {
-    title: "Editors & Dev Tools",
-    skills: ["Cursor", "Kiro", "Kilo", "TRAE", "Zencoder", "VS Code"],
-  },
-  {
-    title: "Tools",
-    skills: ["Postman", "Figma", "Git", "GitHub", "Vercel", "Render"],
-  },
-];
-
+    {
+      title: "Frontend",
+      skills: [
+        "Next.js",
+        "React.js",
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "TypeScript",
+        "Tailwind CSS",
+      ],
+    },
+    {
+      title: "Backend",
+      skills: ["Node.js", "Express", "Java"],
+    },
+    {
+      title: "Databases",
+      skills: ["MongoDB", "Firebase", "Prisma"],
+    },
+    {
+      title: "Auth & Validation",
+      skills: ["Zod", "NextAuth"],
+    },
+    {
+      title: "UI Libraries",
+      skills: ["ShadCN", "Chakra UI", "Daisy UI", "Magic UI", "UIVerse"],
+    },
+    {
+      title: "Tools & Platforms",
+      skills: [
+        "Git",
+        "GitHub",
+        "Vercel",
+        "VS Code",
+        "Postman",
+        "Redux Toolkit",
+        "Zustand",
+      ],
+    },
+  ];
 
   return (
     <section id="skills" className="min-h-screen py-20 relative">

@@ -75,24 +75,24 @@ export default function BlogPostServer({ blog, session }: BlogPostServerProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       
-      <div className=" h-full text-white">
-        <div className="container max-w-4xl mx-auto px-4 py-20">
+      <div className="max-w-7xl mx-auto h-full text-white">
+        <div className="container mx-auto px-4 py-20">
           {/* Back Button */}
           <div className="mb-8">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
             >
-              <ArrowLeft size={16} />
+              <ArrowLeft size={20} />
               Back to Blog
             </Link>
           </div>
 
           {/* Blog Header */}
-          <div className="mb-8 ">
+          <div className="mb-8">
             <div className="flex flex-col md:flex-row md:items-center md:justify-center gap-4 mb-6">
               <div className="flex-1">
-                <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+                <h1 className="text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
                   {blog.title}
                 </h1>
                 
@@ -144,7 +144,7 @@ export default function BlogPostServer({ blog, session }: BlogPostServerProps) {
           </div>
 
           {/* Blog Content */}
-          <div className="prose prose-invert prose-lg max-w-[98%] mx-auto mb-8 !text-white">
+          <div className="prose prose-invert prose-lg max-w-[90%] mx-auto mb-8 !text-white">
             <div
               className="blog-content"
               dangerouslySetInnerHTML={{ __html: blog.content }}
