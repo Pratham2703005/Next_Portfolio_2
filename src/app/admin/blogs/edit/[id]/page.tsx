@@ -86,7 +86,7 @@ export default async function EditBlogPage(props : {params: BlogProps} ) {
 
   return (
     <AdminAuthCheck>
-      <div className="min-h-screen bg-transparent max-w-6xl mx-auto text-white">
+      <div className="min-h-screen bg-transparent max-w-4xl mx-auto text-white">
         <div className="container mx-auto px-4 py-20">
           {/* Header */}
           <div className="mb-8">

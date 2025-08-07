@@ -144,7 +144,7 @@ export default function BlogPostServer({ blog, session }: BlogPostServerProps) {
           </div>
 
           {/* Blog Content */}
-          <div className="prose prose-invert prose-lg max-w-[90%] mx-auto mb-8 !text-white">
+          <div className="prose prose-invert prose-lg max-w-[98%] mx-auto mb-8 !text-white">
             <div
               className="blog-content"
               dangerouslySetInnerHTML={{ __html: blog.content }}
