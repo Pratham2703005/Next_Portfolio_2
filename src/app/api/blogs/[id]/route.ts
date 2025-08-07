@@ -60,9 +60,10 @@ export async function GET(
 // PUT /api/blogs/[id] - Update blog (admin only)
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  try {
+  const id = (await params).id;
+  try {    
     const session = await auth();
     
     if (!session?.user?.email || session.user.email !== 'pk2732004@gmail.com') {
@@ -84,7 +85,7 @@ export async function PUT(
 
     // Check if blog exists
     const existingBlog = await prisma.blog.findUnique({
-      where: { id: params.id },
+      where: { id },
     });
 
     if (!existingBlog) {
@@ -106,7 +107,7 @@ export async function PUT(
       const slugExists = await prisma.blog.findFirst({
         where: {
           slug,
-          id: { not: params.id },
+          id: { not: id},
         },
       });
 
@@ -119,7 +120,7 @@ export async function PUT(
     }
 
     const blog = await prisma.blog.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         title,
         slug,
