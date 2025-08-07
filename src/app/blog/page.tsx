@@ -137,11 +137,10 @@ async function getBlogs(
   }
 }
 
-export default async function BlogPage({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) {
+interface SearchPageProps {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+export default async function BlogPage({ searchParams}: SearchPageProps) {
   const s = await searchParams;
   const page = Number(s.page) || 1;
   
