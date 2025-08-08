@@ -137,7 +137,7 @@ export default function LikeButton({ blogId, initialLikeCount, isAuthenticated }
             : 'text-gray-400 hover:text-red-400'
         }`} 
       />
-      {isCheckingLike ? 'Loading...' : ''} {likeCount.toLocaleString()} {likeCount !== 1 ? 'likes' : 'kike'}
+      {isCheckingLike ? 'Loading...' : ''} {likeCount.toLocaleString()} {likeCount !== 1 ? 'likes' : 'like'}
     </button>
   );
 }
