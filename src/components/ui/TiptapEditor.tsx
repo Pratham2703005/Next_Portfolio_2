@@ -24,6 +24,14 @@ export default function TiptapEditor({ value, onChange, placeholder }: TiptapEdi
       attributes: {
         class: 'prose prose-sm sm:prose lg:prose-lg xl:prose-xl mx-auto focus:outline-none min-h-[350px] p-4',
       },
+      handleKeyDown: (view, event) => {
+        // Prevent Enter key from bubbling up to form and triggering submission
+        if (event.key === 'Enter' && !event.shiftKey && !event.ctrlKey && !event.metaKey) {
+          // Let TipTap handle the Enter key normally (create new line/paragraph)
+          return false;
+        }
+        return false;
+      },
     },
     immediatelyRender:false
     
@@ -58,21 +66,33 @@ export default function TiptapEditor({ value, onChange, placeholder }: TiptapEdi
         <div className='border-r border-gray-700 px-2'>
 
         <button
-          onClick={() => editor.chain().focus().toggleBold().run()}
+          type="button"
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleBold().run();
+          }}
           className={`p-2 rounded ${editor.isActive('bold') ? 'bg-[#111418]' : 'hover:bg-[#101010]'}`}
           title="Bold"
           >
           <strong>B</strong>
         </button>
         <button
-          onClick={() => editor.chain().focus().toggleItalic().run()}
+          type="button"
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleItalic().run();
+          }}
           className={`p-2 rounded ${editor.isActive('italic') ? 'bg-[#111418]' : 'hover:bg-[#101010]'}`}
           title="Italic"
           >
           <em>I</em>
         </button>
         <button
-          onClick={() => editor.chain().focus().toggleStrike().run()}
+          type="button"
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleStrike().run();
+          }}
           className={`p-2 rounded ${editor.isActive('strike') ? 'bg-[#111418]' : 'hover:bg-[#101010]'}`}
           title="Strikethrough"
           >
@@ -83,21 +103,33 @@ export default function TiptapEditor({ value, onChange, placeholder }: TiptapEdi
         <div className='border-r border-gray-700 px-2'>
 
         <button
-          onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+          type="button"
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleHeading({ level: 1 }).run();
+          }}
           className={`p-2 rounded ${editor.isActive('heading', { level: 1 }) ? 'bg-[#111418]' : 'hover:bg-[#101010]'}`}
           title="Heading 1"
           >
           H1
         </button>
         <button
-          onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+          type="button"
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleHeading({ level: 2 }).run();
+          }}
           className={`p-2 rounded ${editor.isActive('heading', { level: 2 }) ? 'bg-[#111418]' : 'hover:bg-[#101010]'}`}
           title="Heading 2"
           >
           H2
         </button>
         <button
-          onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
+          type="button"
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleHeading({ level: 3 }).run();
+          }}
           className={`p-2 rounded ${editor.isActive('heading', { level: 3 }) ? 'bg-[#111418]' : 'hover:bg-[#101010]'}`}
           title="Heading 3"
           >
@@ -108,14 +140,22 @@ export default function TiptapEditor({ value, onChange, placeholder }: TiptapEdi
         <div className='border-r border-gray-700 px-2'>
 
         <button
-          onClick={() => editor.chain().focus().toggleBulletList().run()}
+          type="button"
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleBulletList().run();
+          }}
           className={`p-2 rounded ${editor.isActive('bulletList') ? 'bg-[#111418]' : 'hover:bg-[#101010]'}`}
           title="Bullet List"
           >
           • List
         </button>
         <button
-          onClick={() => editor.chain().focus().toggleOrderedList().run()}
+          type="button"
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleOrderedList().run();
+          }}
           className={`p-2 rounded ${editor.isActive('orderedList') ? 'bg-[#111418]' : 'hover:bg-[#101010]'}`}
           title="Ordered List"
           >
@@ -126,14 +166,22 @@ export default function TiptapEditor({ value, onChange, placeholder }: TiptapEdi
         <div className='border-r border-gray-700 px-2'>
 
         <button
-          onClick={() => editor.chain().focus().toggleBlockquote().run()}
+          type="button"
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleBlockquote().run();
+          }}
           className={`p-2 rounded ${editor.isActive('blockquote') ? 'bg-[#111418]' : 'hover:bg-[#101010]'}`}
           title="Blockquote"
           >
           ❝
         </button>
         <button
-          onClick={() => editor.chain().focus().toggleCodeBlock().run()}
+          type="button"
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleCodeBlock().run();
+          }}
           className={`p-2 rounded ${editor.isActive('codeBlock') ? 'bg-[#111418]' : 'hover:bg-[#101010]'}`}
           title="Code Block"
           >
@@ -196,7 +244,7 @@ export default function TiptapEditor({ value, onChange, placeholder }: TiptapEdi
         }
         
         .tiptap pre {
-          background-color: #f3f4f6;
+          background-color: #24262a !important;
           padding: 1rem;
           border-radius: 0.5rem;
           overflow-x: auto;
@@ -204,7 +252,6 @@ export default function TiptapEditor({ value, onChange, placeholder }: TiptapEdi
         }
         
         .tiptap code {
-          background-color: #f3f4f6;
           padding: 0.25rem 0.5rem;
           border-radius: 0.25rem;
           font-family: monospace;

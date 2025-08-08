@@ -72,8 +72,38 @@ export default function BlogForm({ initialData, blogId, mode }: BlogFormProps) {
     }
   };
 
+  const handleFormKeyDown = (e: React.KeyboardEvent) => {
+    // Prevent Enter key from submitting the form unless it's from the submit button
+    if (e.key === 'Enter') {
+      const target = e.target as HTMLElement;
+      
+      // Allow Enter in textarea (excerpt field)
+      if (target.tagName === 'TEXTAREA') {
+        return;
+      }
+      
+      // Allow Enter only on submit button
+      if (target.type === 'submit') {
+        return;
+      }
+      
+      // Prevent all other Enter key presses from submitting the form
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Debug log to track form submissions
+    console.log('Form submitted via:', e.target, 'Event type:', e.type);
+    
+    // Prevent accidental submissions
+    if (loading) {
+      console.log('Form submission blocked - already loading');
+      return;
+    }
     
     if (!formData.title.trim() || !formData.content.trim()) {
       alert('Title and content are required');
@@ -110,7 +140,7 @@ export default function BlogForm({ initialData, blogId, mode }: BlogFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} onKeyDown={handleFormKeyDown} className="space-y-6">
       {/* Title */}
       <div>
         <label htmlFor="title" className="block text-sm font-medium text-gray-300 mb-2">
@@ -160,7 +190,10 @@ export default function BlogForm({ initialData, blogId, mode }: BlogFormProps) {
             />
             <button
               type="button"
-              onClick={handleAddTag}
+              onClick={(e) => {
+                e.preventDefault();
+                handleAddTag();
+              }}
               className="px-4 py-3 bg-purple-600 hover:bg-purple-700 rounded-md transition-colors"
             >
               <Plus size={20} />
@@ -175,7 +208,10 @@ export default function BlogForm({ initialData, blogId, mode }: BlogFormProps) {
                 #{tag}
                 <button
                   type="button"
-                  onClick={() => handleRemoveTag(tag)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleRemoveTag(tag);
+                  }}
                   className="hover:text-red-400 transition-colors"
                 >
                   <X size={14} />
@@ -191,11 +227,20 @@ export default function BlogForm({ initialData, blogId, mode }: BlogFormProps) {
         <label className="block text-sm font-medium text-gray-300 mb-2">
           Content *
         </label>
-        <TiptapEditor
-          value={formData.content}
-          onChange={(content) => handleInputChange('content', content)}
-          placeholder="Write your blog content here..."
-        />
+        <div 
+          onKeyDown={(e) => e.stopPropagation()}
+          onClick={(e) => e.stopPropagation()}
+          onSubmit={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
+        >
+          <TiptapEditor
+            value={formData.content}
+            onChange={(content) => handleInputChange('content', content)}
+            placeholder="Write your blog content here..."
+          />
+        </div>
       </div>
 
       {/* Excerpt */}
