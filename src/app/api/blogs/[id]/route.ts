@@ -74,7 +74,7 @@ export async function PUT(
     }
 
     const body = await request.json();
-    const { title, content, excerpt, published, featured, category, tags } = body;
+    const { title, content, excerpt, published, featured, category, tags, scheduledAt } = body;
 
     if (!title || !content) {
       return NextResponse.json(
@@ -130,6 +130,7 @@ export async function PUT(
         featured: featured ?? existingBlog.featured,
         category: category ?? existingBlog.category,
         tags: tags ?? existingBlog.tags,
+        scheduledAt: scheduledAt ? new Date(scheduledAt) : existingBlog.scheduledAt,
       },
       include: {
         author: {

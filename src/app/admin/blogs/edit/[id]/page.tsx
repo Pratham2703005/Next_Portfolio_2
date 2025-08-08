@@ -19,6 +19,7 @@ interface Blog {
   likeCount: number;
   createdAt: Date;
   updatedAt: Date;
+  scheduledAt: Date | null;
   author: {
     id: string;
     name: string | null;
@@ -82,6 +83,7 @@ export default async function EditBlogPage(props : {params: BlogProps} ) {
     featured: blog.featured,
     category: blog.category || '',
     tags: blog.tags || [],
+    scheduledAt: blog.scheduledAt ? blog.scheduledAt.toISOString().slice(0, 16) : null,
   };
 
   return (

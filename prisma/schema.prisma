@@ -108,6 +108,7 @@ model Blog {
   featured    Boolean  @default(false)
   category    String?
   tags        String[] // Array of tag strings
+  scheduledAt DateTime? // Scheduled publishing time
   
   authorId    String   @db.ObjectId
   author      User     @relation(fields: [authorId], references: [id])

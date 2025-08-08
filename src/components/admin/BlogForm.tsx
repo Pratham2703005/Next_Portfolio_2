@@ -17,6 +17,7 @@ interface BlogFormData {
   featured: boolean;
   category: string;
   tags: string[];
+  scheduledAt: string | null;
 }
 
 interface BlogFormProps {
@@ -38,10 +39,11 @@ export default function BlogForm({ initialData, blogId, mode }: BlogFormProps) {
       featured: false,
       category: '',
       tags: [],
+      scheduledAt: null,
     }
   );
 
-  const handleInputChange = (field: keyof BlogFormData, value: string | boolean | string[]) => {
+  const handleInputChange = (field: keyof BlogFormData, value: string | boolean | string[] | null) => {
     setFormData(prev => ({
       ...prev,
       [field]: value
@@ -78,12 +80,12 @@ export default function BlogForm({ initialData, blogId, mode }: BlogFormProps) {
       const target = e.target as HTMLElement;
       
       // Allow Enter in textarea (excerpt field)
-      if (target.tagName === 'TEXTAREA') {
+      if (target instanceof HTMLTextAreaElement) {
         return;
       }
       
       // Allow Enter only on submit button
-      if (target.type === 'submit') {
+      if (target instanceof HTMLInputElement && target.type === 'submit') {
         return;
       }
       
@@ -121,7 +123,10 @@ export default function BlogForm({ initialData, blogId, mode }: BlogFormProps) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          scheduledAt: formData.scheduledAt ? new Date(formData.scheduledAt) : null,
+        }),
       });
 
       if (response.ok) {
@@ -258,29 +263,48 @@ export default function BlogForm({ initialData, blogId, mode }: BlogFormProps) {
         />
       </div>
 
-      {/* Options */}
-      <div className="flex flex-wrap gap-6">
-        <label className="flex items-center gap-2 cursor-pointer">
+      {/* Scheduling */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label htmlFor="scheduledAt" className="block text-sm font-medium text-gray-300 mb-2">
+            Schedule Publication
+          </label>
           <input
-            type="checkbox"
-            checked={formData.published}
-            onChange={(e) => handleInputChange('published', e.target.checked)}
-            className="w-4 h-4 text-purple-600 bg-gray-800 border-gray-700 rounded focus:ring-purple-500"
+            type="datetime-local"
+            id="scheduledAt"
+            value={formData.scheduledAt || ''}
+            onChange={(e) => handleInputChange('scheduledAt', e.target.value || null)}
+            className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:border-purple-500 transition-colors text-white"
           />
-          <span className="text-gray-300">
-            {mode === 'create' ? 'Publish immediately' : 'Published'}
-          </span>
-        </label>
+          <p className="mt-1 text-sm text-gray-500">
+            Leave blank to publish immediately or set a future date/time
+          </p>
+        </div>
 
-        <label className="flex items-center gap-2 cursor-pointer">
-          <input
-            type="checkbox"
-            checked={formData.featured}
-            onChange={(e) => handleInputChange('featured', e.target.checked)}
-            className="w-4 h-4 text-purple-600 bg-gray-800 border-gray-700 rounded focus:ring-purple-500"
-          />
-          <span className="text-gray-300">Featured post</span>
-        </label>
+        {/* Options */}
+        <div className="flex flex-col gap-4 pt-6">
+          <label className="flex items-center gap-2 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={formData.published}
+              onChange={(e) => handleInputChange('published', e.target.checked)}
+              className="w-4 h-4 text-purple-600 bg-gray-800 border-gray-700 rounded focus:ring-purple-500"
+            />
+            <span className="text-gray-300">
+              {mode === 'create' ? 'Publish immediately' : 'Published'}
+            </span>
+          </label>
+
+          <label className="flex items-center gap-2 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={formData.featured}
+              onChange={(e) => handleInputChange('featured', e.target.checked)}
+              className="w-4 h-4 text-purple-600 bg-gray-800 border-gray-700 rounded focus:ring-purple-500"
+            />
+            <span className="text-gray-300">Featured post</span>
+          </label>
+        </div>
       </div>
 
       {/* Action Buttons */}

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSession } from 'next-auth/react';
 import { Heart } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 interface LikeButtonProps {
   blogId: string;
@@ -43,7 +44,10 @@ export default function LikeButton({ blogId, initialLikeCount, isAuthenticated }
   };
 
   const handleLike = async () => {
-    if (!isAuthenticated || !session?.user) return;
+    if (!isAuthenticated || !session?.user) {
+      toast.error('Please sign in to like this post');
+      return;
+    }
     
     // Rate limiting implementation
     const now = Date.now();
@@ -56,12 +60,14 @@ export default function LikeButton({ blogId, initialLikeCount, isAuthenticated }
     
     // Limit to 10 requests per 10 seconds
     if (likeRequestCount.current >= 10) {
+      toast.error('Too many requests. Please wait a moment.');
       console.warn('Rate limit exceeded for likes');
       return;
     }
     
     // Prevent multiple rapid requests (debounce)
     if (timeDiff < 1000) {
+      toast.error('Please wait before liking again');
       console.warn('Too many requests, please wait');
       return;
     }
@@ -92,20 +98,26 @@ export default function LikeButton({ blogId, initialLikeCount, isAuthenticated }
         // Revert optimistic update on error
         setLiked(wasLiked);
         setLikeCount(currentCount);
+        const error = await response.json();
+        toast.error(error.error || 'Failed to like post');
       }
     } catch {
       // Revert optimistic update on error
       setLiked(wasLiked);
       setLikeCount(currentCount);
+      toast.error('Failed to like post');
     }
   };
 
   if (!isAuthenticated) {
     return (
-      <div className="flex items-center gap-1 text-gray-400">
+      <button
+        onClick={handleLike}
+        className="flex items-center gap-1 text-gray-400 hover:text-red-400 transition-colors cursor-pointer"
+      >
         <Heart size={16} />
-        {likeCount.toLocaleString()} likes
-      </div>
+        {likeCount.toLocaleString()} {likeCount !== 1 ? 'likes' : 'like'}
+      </button>
     );
   }
 
@@ -125,7 +137,7 @@ export default function LikeButton({ blogId, initialLikeCount, isAuthenticated }
             : 'text-gray-400 hover:text-red-400'
         }`} 
       />
-      {isCheckingLike ? 'Loading...' : ''} {likeCount.toLocaleString()} {likeCount !== 1 ? 'Likes' : 'Like'}
+      {isCheckingLike ? 'Loading...' : ''} {likeCount.toLocaleString()} {likeCount !== 1 ? 'likes' : 'kike'}
     </button>
   );
 }

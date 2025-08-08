@@ -6,6 +6,7 @@ import LikeButton from './LikeButton';
 import AdminActions from './AdminActions';
 import { Session } from 'next-auth';
 import BlogPostStyles from './BlogPostStyles';
+import { Toaster } from 'react-hot-toast';
 
 interface Blog {
   id: string;
@@ -155,6 +156,7 @@ export default function BlogPostServer({ blog, session }: BlogPostServerProps) {
         {/* Custom styles for blog content */}
         <BlogPostStyles/>
       </div>
+      <Toaster position='bottom-right' reverseOrder={false}/>
       <Footer />
     </>
   );

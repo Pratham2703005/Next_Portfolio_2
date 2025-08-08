@@ -97,7 +97,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { title, content, excerpt, published, featured, category, tags } = body;
+    const { title, content, excerpt, published, featured, category, tags, scheduledAt } = body;
 
     if (!title || !content) {
       return NextResponse.json(
@@ -134,6 +134,7 @@ export async function POST(request: NextRequest) {
         featured: featured || false,
         category: category || null,
         tags: tags || [],
+        scheduledAt: scheduledAt ? new Date(scheduledAt) : null,
         authorId: session.user.id!,
       },
       include: {
