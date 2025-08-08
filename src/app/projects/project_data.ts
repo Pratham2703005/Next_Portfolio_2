@@ -6,7 +6,7 @@ export const projects = [
     "repoLink": "https://github.com/Pratham2703005/AgraEcom",
     "liveLink": "https://agraecom.vercel.app/products",
     "techStack": [
-      "/skills/Next.svg",
+      "/skills/next.svg",
       "/skills/React.svg",
       "/skills/prisma.svg",
       "/skills/cloudinary.svg",
@@ -40,7 +40,7 @@ export const projects = [
   "repoLink": "https://github.com/Pratham2703005/PDF_analyzer",
   "liveLink": "https://pdf-analyzer-blond.vercel.app/",
   "techStack": [
-    "/skills/Next.svg",
+    "/skills/next.svg",
     "/skills/React.svg",
     "/skills/TypeScript.svg",
     "/skills/tail.svg",
