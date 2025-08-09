@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { prisma } from '@/lib/db';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://pratham-potfolio.vercel.app/';
+const baseUrl = (process.env.NEXT_PUBLIC_BASE_URL || 'https://pratham-potfolio.vercel.app').replace(/\/$/, '');
 
   // Get all published blogs
   const blogs = await prisma.blog.findMany({
