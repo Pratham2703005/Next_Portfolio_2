@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://your-portfolio-domain.com",
+    url: "https://pratham-potfolio.vercel.app",
     title: "Pratham Israni - Full-Stack Developer & Innovation Builder",
     description: "SIH 2024 Finalist specializing in interactive web experiences. Building innovative solutions with modern web technologies.",
     siteName: "Pratham Israni Portfolio",
