@@ -71,6 +71,10 @@ async function getBlogs(
       prisma.blog.findMany({
         skip,
         take: limit,
+        orderBy:{
+          createdAt:'desc',
+          updatedAt:'desc'
+        },
         include: {
           author: {
             select: {
