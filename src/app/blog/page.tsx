@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+// import { Suspense } from 'react';
 import { Metadata } from 'next';
 import { prisma } from '@/lib/db';
 import Footer from '@/components/shared/Footer';
@@ -72,8 +72,7 @@ async function getBlogs(
         skip,
         take: limit,
         orderBy:{
-          createdAt:'desc',
-          updatedAt:'desc'
+          createdAt:'desc'
         },
         include: {
           author: {
@@ -148,9 +147,9 @@ export default async function BlogPage({
           <BlogHeader />
           
           {/* Client component for search and controls */}
-          <Suspense fallback={<div>Loading controls...</div>}>
-            <BlogControls/>
-          </Suspense>
+          {/* <Suspense fallback={<div>Loading controls...</div>}> */}
+          <BlogControls/>
+          {/* </Suspense> */}
           
           {/* Server-rendered blog table */}
           <BlogTable 
