@@ -1,5 +1,7 @@
 "use client";
 
+import PageHeading from "./PageHeading";
+
 const SKILL_ICONS: Record<string, string> = {
   JavaScript: "/skills/js.svg",
   TypeScript: "/skills/TypeScript.svg",
@@ -128,31 +130,7 @@ export default function SkillsSection() {
 
       <div className="relative z-10 w-full max-w-5xl">
         {/* Title */}
-        <div className="flex items-center gap-5 mb-16">
-          <div
-            className="flex-1 h-px"
-            style={{
-              background:
-                "linear-gradient(to right, transparent, rgba(255,255,255,0.12))",
-            }}
-          />
-          <h1
-            className="text-3xl sm:text-4xl font-extrabold tracking-[0.16em] text-white whitespace-nowrap"
-            style={{
-              fontFamily: "'Syne', sans-serif",
-              textShadow: "0 0 40px rgba(168,85,247,0.5)",
-            }}
-          >
-            TECHNICAL SKILLS
-          </h1>
-          <div
-            className="flex-1 h-px"
-            style={{
-              background:
-                "linear-gradient(to left, transparent, rgba(255,255,255,0.12))",
-            }}
-          />
-        </div>
+        <PageHeading title="TECHNICAL SKILLS" shadowColor="rgba(168,85,247,0.5)" />
 
         {/* Categories */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

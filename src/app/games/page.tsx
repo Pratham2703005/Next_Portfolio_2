@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Puzzle, Gamepad2, Joystick, Dice5 } from "lucide-react"
+import PageHeading from "@/components/ui/PageHeading"
 
 const games = [
   {
@@ -31,7 +32,7 @@ const games = [
 export default function Games() {
   return (
     <div className="container mx-auto px-3 py-10 md:p-6">
-      <h1 className="text-4xl font-bold mb-4 md:mb-8 text-white">Arcade Games</h1>
+      <PageHeading title="ARCADE GAMES" shadowColor="rgba(168, 85, 247, 0.5)" />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
         {games.map((game) => (
