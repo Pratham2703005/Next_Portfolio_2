@@ -1,10 +1,7 @@
 import TypeWriter from '@/components/ui/TypeWriter';
-// import HorizontalEducationTimeline from '@/components/ui/HorizontalEducationTimeline';
-import AchievementsSection from '@/components/sections/AchievementsSection';
 import Footer from '@/components/shared/Footer';
 import Image from 'next/image';
 import React from 'react'
-import EducationSection from '@/components/ui/EducationSection';
 
 const Home = () => {
   return (
@@ -118,13 +115,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-
-      {/* Education Timeline */}
-      <EducationSection />
-
-      {/* Achievements Section */}
-      <AchievementsSection />
 
       {/* Footer */}
       <Footer />

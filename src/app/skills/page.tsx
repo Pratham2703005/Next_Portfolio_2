@@ -1,6 +1,5 @@
 import type { Metadata } from "next"
 import SkillsSection from "@/components/ui/SkillsSection"
-import ScrollProgressBar from "@/components/ui/ScrollProgressBar"
 import Footer from "@/components/shared/Footer"
 
 export const metadata: Metadata = {
@@ -17,13 +16,9 @@ export const metadata: Metadata = {
 export default function SkillsPage() {
   return (
     <div className="relative text-white overflow-x-hidden min-h-screen">
-      {/* Progress bar */}
-      <ScrollProgressBar />
-
-      {/* Skills Section */}
-      <div className="pt-20">
+      
         <SkillsSection />
-      </div>
+    
 
       {/* Footer */}
       <Footer />

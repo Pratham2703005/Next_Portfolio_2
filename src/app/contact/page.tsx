@@ -7,7 +7,6 @@ import { Toaster } from 'react-hot-toast';
 // import TypingEffect from 'react-typing-effect';
 import toast from 'react-hot-toast';
 import emailjs from 'emailjs-com';
-import { useSession } from 'next-auth/react';
 import TypeWriter from '@/components/ui/TypeWriter';
 import Footer from '@/components/shared/Footer';
 
@@ -50,28 +49,19 @@ const validateForm = (data: FormData): FormErrors => {
 };
 
 const Contact = () => {
-  const { data: session } = useSession()
   const [formData, setFormData] = useState<FormData>({
-    name: session?.user?.name || '',
-    email: session?.user?.email || '',
+    name: '',
+    email: '',
     message: '',
   });
   const [mount, setMount] = useState<boolean>(false);
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-
+ 
   useEffect(() => {
-    document.title = "Pratham's Portfolio - Contact";
     setMount(true);
   }, []);
-  useEffect(()=>{
-setFormData(prev => ({
-      ...prev,
-      name: session?.user?.name || '',
-      email: session?.user?.email || '',
-    }))
-  },[session])
-
+  
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({

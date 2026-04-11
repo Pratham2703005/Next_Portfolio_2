@@ -4,7 +4,6 @@
 import { useRef, memo } from "react"
 import type { AllMessages } from "@/utils/type"
 import { LockIcon, Trash, UnlockIcon } from "lucide-react"
-import { useSession } from "next-auth/react"
 import Image from "next/image"
 
 interface NoteProps {
@@ -14,10 +13,9 @@ interface NoteProps {
 
 const Note = memo(function Note({ message, deleteNote }: NoteProps) {
   const nodeRef = useRef<HTMLDivElement>(null!)
-  const { data: session } = useSession()
 
-  const isOwnMessage = session?.user?.email === message.user_email
-  const isAdminLive = session?.user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL
+  const isOwnMessage = false // Replace with actual session check if needed
+  const isAdminLive = false // Replace with actual session check if needed
 
   const getBorderClass = () => {
     if (isOwnMessage) {

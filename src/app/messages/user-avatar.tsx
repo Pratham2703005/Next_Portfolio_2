@@ -1,5 +1,4 @@
 import { MESSAGE_ZOOM_THRESHOLD } from "@/utils/default-data"
-import { useSession } from "next-auth/react"
 
 interface UserAvatarProps {
   name?: string,
@@ -11,7 +10,7 @@ interface UserAvatarProps {
   userEmail?: string
 }
 
-export function UserAvatar({name, image, x, y, scale, isPublic = true, userEmail }: UserAvatarProps) {
+export function UserAvatar({name, image, x, y, scale, isPublic = true }: UserAvatarProps) {
   // Fixed size for avatar
   const AVATAR_SIZE = 40
   const TEXT_SIZE = 14
@@ -24,9 +23,7 @@ export function UserAvatar({name, image, x, y, scale, isPublic = true, userEmail
   // If below threshold, use the minimum size threshold
   const displayScale = scale > MESSAGE_ZOOM_THRESHOLD ? MESSAGE_ZOOM_THRESHOLD : scale
   
-  // Get session to determine if the message is from the current user
-  const { data: session } = useSession()
-  const isOwnMessage = session?.user?.email === userEmail
+  const isOwnMessage = false
   
   // Dynamic border color logic
   const getBorderColor = () => {
