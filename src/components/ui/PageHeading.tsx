@@ -12,9 +12,6 @@ export default function PageHeading({
 
   return (
     <>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@800&display=swap');
-      `}</style>
       <div className="flex items-center gap-5 mb-16">
         <div
           className="hidden sm:flex flex-1 h-px"
@@ -25,7 +22,7 @@ export default function PageHeading({
         <h1
           className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-[0.16em] text-white flex flex-wrap justify-center items-center gap-2 sm:gap-3"
           style={{
-            fontFamily: "'Syne', sans-serif",
+            fontFamily: "var(--font-syne), sans-serif",
           }}
         >
           {titleWords.map((word, index) => (

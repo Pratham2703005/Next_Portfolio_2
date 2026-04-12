@@ -99,8 +99,6 @@ export default function Home() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@800;900&family=Space+Mono:wght@400;700&display=swap');
-
         @keyframes floatY {
           0%,100% { transform: translateY(0px) rotate(var(--r,0deg)); }
           50%      { transform: translateY(-10px) rotate(var(--r,0deg)); }
@@ -148,7 +146,7 @@ export default function Home() {
                 {/* Name */}
                 <h1
                   className="text-5xl sm:text-6xl md:text-7xl font-black text-white leading-none"
-                  style={{ fontFamily: "'Syne', sans-serif", letterSpacing: "-0.02em" }}
+                  style={{ fontFamily: "var(--font-syne), sans-serif", letterSpacing: "-0.02em" }}
                 >
                   Pratham<br />
                   <span style={{ color: "#a78bfa" }}>Israni</span>
@@ -157,7 +155,7 @@ export default function Home() {
                 {/* TypeWriter */}
                 <div
                   className="h-8 flex items-center text-base sm:text-lg"
-                  style={{ fontFamily: "'Space Mono', monospace" }}
+                  style={{ fontFamily: "var(--font-space-mono), monospace" }}
                 >
                   <TypeWriter data={[
                     "SIH 2024 Finalist.",    2000,

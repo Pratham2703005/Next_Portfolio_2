@@ -1,16 +1,32 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Syne, Space_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/shared/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const syne = Syne({
+  variable: "--font-syne",
+  subsets: ["latin"],
+  weight: ["700", "800"],
+  display: "swap",
+});
+
+const spaceMono = Space_Mono({
+  variable: "--font-space-mono",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  display: "swap",
 });
 
 const SITE_URL =
@@ -20,6 +36,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   verification: {
     google: "sBaksVoJbeQ1fnEl1QJbrE7Waql39PFYSRz6iYrUVrQ",
+  },
+  icons: {
+    icon: [{ url: "/icon.png", type: "image/svg+xml" }],
   },
   title: "Pratham Israni - Full-Stack Developer & Innovation Builder",
   description: "SIH 2024 Finalist specializing in interactive web experiences. 600+ LeetCode problems solved. Building innovative solutions with React, Next.js, and modern web technologies. Available for full-stack developer roles.",
@@ -96,7 +115,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black z-10 w-full min-h-[100dvh]`}
+        className={`${geistSans.variable} ${geistMono.variable} ${syne.variable} ${spaceMono.variable} antialiased bg-black z-10 w-full min-h-[100dvh]`}
       >
         <script
           type="application/ld+json"

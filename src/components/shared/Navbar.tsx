@@ -38,10 +38,10 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16 max-w-[90%] mx-auto">
         <div className='flex gap-3 md:gap-5 items-center justify-center'>
       
-      <Link href="/" className="flex-shrink-0">
-        <h1 className="text-3xl md:text-4xl font-bold text-white hover:text-gray-300 transition duration-300">
+      <Link href="/" className="flex-shrink-0" aria-label="Home">
+        <span className="block text-3xl md:text-4xl font-bold text-white hover:text-gray-300 transition duration-300">
           pratham
-        </h1>
+        </span>
       </Link>
     </div>
 
@@ -89,6 +89,10 @@ const Navbar = () => {
           <div className="flex items-center">
             <button
               onClick={toggleMenu}
+              type="button"
+              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-nav"
               className="text-white hover:text-gray-300 focus:outline-none md:hidden"
             >
               {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -100,6 +104,7 @@ const Navbar = () => {
       {/* Mobile menu */}
       {isMenuOpen && (
         <motion.div
+          id="mobile-nav"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
