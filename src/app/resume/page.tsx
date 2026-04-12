@@ -1,58 +1,123 @@
-'use client';
+import type { Metadata } from 'next';
+import ResumeViewer from './ResumeViewer';
 
-import { useEffect, useRef } from 'react';
-import PageHeading from '@/components/ui/PageHeading';
-
-const ResumePage = () => {
-  const hasDownloaded = useRef(false);
-
-  useEffect(() => {
-    // Check local storage for resume-download preference
-    const resumeDownloadPref = localStorage.getItem('resume-download');
-
-    // Auto-download if preference is 1 and haven't downloaded yet
-    if (resumeDownloadPref == null && !hasDownloaded.current) {
-      hasDownloaded.current = true;
-      localStorage.setItem('resume-download', '1');
-      downloadResume();
-    }
-  }, []);
-
-  const downloadResume = () => {
-    const link = document.createElement('a');
-    link.href = '/pratham-israni-resume.pdf';
-    link.download = 'pratham-israni-resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
-  return (
-    <div className="min-h-screen text-white pt-20 pb-12 px-4">
-      <div className="max-w-5xl mx-auto">
-        {/* Header Section */}
-        <PageHeading title="MY RESUME" />
-          
-         
-
-        {/* PDF Viewer */}
-        <div className="bg-transparent rounded-lg overflow-hidden shadow-2xl">
-          <div className="w-full min-h-screen">
-            <embed
-              src="/pratham-israni-resume.pdf"
-              title="Resume: Pratham Israni"
-              type="application/pdf"
-              width="100%"
-              height="1130"
-              className="w-full"
-            />
-          </div>
-        </div>
-
-       
-      </div>
-    </div>
-  );
+export const metadata: Metadata = {
+  title: 'Resume — Pratham Israni | Full-Stack Developer',
+  description:
+    'View or download the resume of Pratham Israni — Full-Stack Developer, SIH 2024 Finalist (Top 48/1200+), 600+ LeetCode problems solved. React, Next.js, TypeScript, Node.js.',
+  keywords: [
+    'Pratham Israni resume',
+    'Pratham Israni CV',
+    'Full-Stack Developer resume',
+    'React developer resume',
+    'Next.js developer',
+    'SIH 2024 Finalist',
+    'TypeScript',
+    'Node.js',
+  ],
+  alternates: { canonical: '/resume' },
+  openGraph: {
+    title: 'Resume — Pratham Israni',
+    description:
+      'Full-Stack Developer · SIH 2024 Finalist · React, Next.js, TypeScript, Node.js.',
+    url: '/resume',
+    type: 'profile',
+    images: [
+      {
+        url: '/profile3.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Pratham Israni — Full-Stack Developer',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Resume — Pratham Israni',
+    description:
+      'Full-Stack Developer · SIH 2024 Finalist · React, Next.js, TypeScript, Node.js.',
+    images: ['/profile3.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
-export default ResumePage;
+const SITE_URL =
+  process.env.NEXT_PUBLIC_BASE_URL || 'https://pratham-potfolio.vercel.app';
+
+const profilePageJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  name: 'Resume — Pratham Israni',
+  url: `${SITE_URL}/resume`,
+  dateModified: new Date().toISOString(),
+  mainEntity: {
+    '@type': 'Person',
+    name: 'Pratham Israni',
+    jobTitle: 'Full-Stack Developer',
+    description:
+      'Full-Stack Developer specializing in interactive web experiences. SIH 2024 Finalist (Top 48/1200+ teams). 600+ LeetCode problems solved.',
+    url: SITE_URL,
+    image: `${SITE_URL}/profile3.jpg`,
+    email: 'mailto:pk2732004@gmail.com',
+    sameAs: [
+      'https://github.com/Pratham2703003',
+      'https://www.linkedin.com/in/pratham-israni-a6b672275/',
+      'https://leetcode.com/u/Pratham012/',
+    ],
+    knowsAbout: [
+      'Full-Stack Development',
+      'React',
+      'Next.js',
+      'TypeScript',
+      'JavaScript',
+      'Node.js',
+      'Tailwind CSS',
+      'Prisma',
+      'PostgreSQL',
+      'Data Structures and Algorithms',
+      'Competitive Programming',
+    ],
+    award: [
+      'Smart India Hackathon 2024 — Top 48 Finalist (out of 1200+ teams)',
+      'War of Codes — Gold Medal',
+    ],
+  },
+};
+
+const resumeDocumentJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'DigitalDocument',
+  name: 'Pratham Israni — Resume',
+  description:
+    'Resume of Pratham Israni, Full-Stack Developer. Skills, experience, projects, and awards.',
+  url: `${SITE_URL}/pratham-israni-resume.pdf`,
+  encodingFormat: 'application/pdf',
+  inLanguage: 'en',
+  author: { '@type': 'Person', name: 'Pratham Israni', url: SITE_URL },
+  about: { '@type': 'Person', name: 'Pratham Israni', url: SITE_URL },
+};
+
+export default function ResumePage() {
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePageJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(resumeDocumentJsonLd) }}
+      />
+      <ResumeViewer />
+    </>
+  );
+}

@@ -1,6 +1,7 @@
 import TypeWriter from '@/components/ui/TypeWriter';
 import Footer from '@/components/shared/Footer';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react'
 
 const Home = () => {
@@ -35,50 +36,27 @@ const Home = () => {
               </div>
 
               {/* Value Proposition */}
-              <p className="text-xl sm:text-2xl text-white font-medium animate-fade-in-up animation-delay-200">
+              <p className="text-xl sm:text-2xl md:text-3xl text-white font-medium animate-fade-in-up animation-delay-200">
                 Full-Stack Developer specializing in Interactive Web Experiences
               </p>
-
-              {/* About Story */}
-              <div className="space-y-4 text-gray-300 text-sm sm:text-base leading-relaxed animate-fade-in-up animation-delay-300">
-                <p>
-                  I&apos;m a <span className="font-semibold text-purple-300">Full-Stack Developer</span> who specializes in creating{" "}
-                  <span className="font-semibold text-blue-300">interactive web experiences</span> that users remember.
-                  My journey combines the precision of competitive programming with the creativity of user-focused development.
-                </p>
-                <p>
-                  From being a <span className="font-semibold text-green-300">SIH 2024 Finalist</span> (top 48/1200+ teams)
-                  to solving 600+ LeetCode problems, I&apos;ve proven my ability to tackle complex challenges under pressure.
-                  This algorithmic foundation helps me write efficient, scalable code that performs in real-world applications.
-                </p>
-                <p>
-                  I don&apos;t just build websites—I create solutions that solve real problems. Whether it&apos;s democratizing
-                  satellite imagery analysis for ISRO or building engaging platforms that keep users coming back,
-                  I focus on <span className="font-semibold text-yellow-300">impact over features</span>.
-                </p>
-                <p className="text-purple-300 font-medium">
-                  Currently seeking full-stack developer roles (Remote/India) to build innovative web experiences that make a difference. 🚀
-                </p>
-              </div>
 
               {/* CTAs - on small screens below content */}
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 animate-fade-in-up animation-delay-400 lg:hidden justify-center">
                 <a
                   href="/contact"
-                  className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 
-                      text-white px-4 py-1 rounded-lg font-medium transition-all transform hover:scale-105 
+                  className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600
+                      text-white px-4 py-1 rounded-lg font-medium transition-all transform hover:scale-105
                       shadow-lg hover:shadow-xl text-center"
                 >
                   Schedule a Call
                 </a>
-                <a
-                  href="/pratham-israni-resume.pdf"
-                  download
-                  className="border-2 border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-gray-900 
+                <Link
+                  href="/resume"
+                  className="border-2 border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-gray-900
                       px-4 py-1 rounded-lg font-medium transition-all transform hover:scale-105 text-center"
                 >
-                  Download Resume
-                </a>
+                  View Resume
+                </Link>
               </div>
             </div>
 
@@ -95,20 +73,19 @@ const Home = () => {
               <div className="hidden lg:flex flex-col w-full gap-4 pt-4 animate-fade-in-up animation-delay-400">
                 <a
                   href="/contact"
-                  className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 
-                      text-white inline-flex items-center justify-center px-4 py-2 text-sm leading-tight rounded-md font-medium transition-all transform hover:scale-105 
+                  className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600
+                      text-white inline-flex items-center justify-center px-4 py-2 text-sm leading-tight rounded-md font-medium transition-all transform hover:scale-105
                       shadow-lg hover:shadow-xl text-center"
                 >
                   Schedule a Call
                 </a>
-                <a
-                  href="/pratham-israni-resume.pdf"
-                  download
-                  className="border-2 border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-gray-900 
+                <Link
+                  href="/resume"
+                  className="border-2 border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-gray-900
                       inline-flex items-center justify-center px-4 py-2 text-sm leading-tight rounded-md font-medium transition-all transform hover:scale-105 text-center"
                 >
-                  Download Resume
-                </a>
+                  View Resume
+                </Link>
               </div>
             </div>
 

@@ -15,7 +15,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const SITE_URL =
+  process.env.NEXT_PUBLIC_BASE_URL || "https://pratham-potfolio.vercel.app";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Pratham Israni - Full-Stack Developer & Innovation Builder",
   description: "SIH 2024 Finalist specializing in interactive web experiences. 600+ LeetCode problems solved. Building innovative solutions with React, Next.js, and modern web technologies. Available for full-stack developer roles.",
   keywords: "Full-Stack Developer, React Developer, Next.js, SIH 2024 Finalist, Competitive Programming, Web Development, JavaScript, TypeScript, Innovation, Interactive Web Experiences",
@@ -61,11 +65,42 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const personJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Pratham Israni",
+    jobTitle: "Full-Stack Developer",
+    description:
+      "Full-Stack Developer specializing in interactive web experiences. SIH 2024 Finalist.",
+    url: SITE_URL,
+    image: `${SITE_URL}/profile3.jpg`,
+    email: "mailto:pk2732004@gmail.com",
+    sameAs: [
+      "https://github.com/Pratham2703003",
+      "https://www.linkedin.com/in/pratham-israni-a6b672275/",
+      "https://leetcode.com/u/Pratham012/",
+    ],
+    knowsAbout: [
+      "Full-Stack Development",
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Node.js",
+      "Tailwind CSS",
+      "Prisma",
+      "PostgreSQL",
+    ],
+  };
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black z-10 w-full min-h-[100dvh]`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
         <SessionProvider>
           <SWRProvider>
             <div className="flex flex-col min-h-[100dvh] relative">

@@ -32,13 +32,16 @@ export default function Footer() {
               <Link href="/messages" className="block text-gray-400 hover:text-purple-400 transition-colors text-sm">
                 Messages
               </Link>
-              <a 
-                href="/pratham-israni-resume.pdf" 
-                download 
+              <Link href="/resume" className="block text-gray-400 hover:text-purple-400 transition-colors text-sm">
+                Resume
+              </Link>
+              <a
+                href="/pratham-israni-resume.pdf"
+                download
                 className="flex items-center gap-2 text-gray-400 hover:text-purple-400 transition-colors text-sm"
               >
                 <Download className="h-4 w-4" />
-                Resume
+                Download PDF
               </a>
             </div>
           </div>

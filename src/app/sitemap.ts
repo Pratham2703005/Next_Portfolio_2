@@ -43,6 +43,18 @@ const baseUrl = (process.env.NEXT_PUBLIC_BASE_URL || 'https://pratham-potfolio.v
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/resume`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/timeline`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/skills`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
