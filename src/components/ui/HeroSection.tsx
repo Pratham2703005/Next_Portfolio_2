@@ -34,7 +34,7 @@ export default function HeroSection() {
               size="lg"
               className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 transition-all transform hover:scale-105"
             >
-              <Link href="/resume.pdf" download>
+              <Link href="/pratham-israni-resume.pdf" download>
                 <Download className="mr-2 h-5 w-5" />
                 Download Resume
               </Link>

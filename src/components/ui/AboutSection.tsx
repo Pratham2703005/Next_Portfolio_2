@@ -78,7 +78,7 @@ export default function AboutSection() {
                     asChild
                     className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600"
                   >
-                    <Link href="/resume.pdf" download>
+                    <Link href="/pratham-israni-resume.pdf" download>
                       <Download className="mr-2 h-5 w-5" />
                       Download My Resume
                     </Link>

@@ -33,7 +33,7 @@ export default function Footer() {
                 Messages
               </Link>
               <a 
-                href="/resume.pdf" 
+                href="/pratham-israni-resume.pdf" 
                 download 
                 className="flex items-center gap-2 text-gray-400 hover:text-purple-400 transition-colors text-sm"
               >

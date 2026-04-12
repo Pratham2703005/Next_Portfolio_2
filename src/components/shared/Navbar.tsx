@@ -14,9 +14,9 @@ const Navbar = () => {
   const navItems = [
     { name: 'Projects', path: '/projects' },
     { name: 'Skills', path: '/skills' },
-    { name: 'Blog', path: '/blog' },
     { name: 'Timeline', path: '/timeline' },
     { name: 'Contact', path: '/contact' },
+    { name: 'Resume', path: '/resume' },
   ];
 
   useEffect(() => {

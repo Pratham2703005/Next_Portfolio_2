@@ -72,7 +72,7 @@ const Home = () => {
                   Schedule a Call
                 </a>
                 <a
-                  href="/resume.pdf"
+                  href="/pratham-israni-resume.pdf"
                   download
                   className="border-2 border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-gray-900 
                       px-4 py-1 rounded-lg font-medium transition-all transform hover:scale-105 text-center"
@@ -102,7 +102,7 @@ const Home = () => {
                   Schedule a Call
                 </a>
                 <a
-                  href="/resume.pdf"
+                  href="/pratham-israni-resume.pdf"
                   download
                   className="border-2 border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-gray-900 
                       inline-flex items-center justify-center px-4 py-2 text-sm leading-tight rounded-md font-medium transition-all transform hover:scale-105 text-center"

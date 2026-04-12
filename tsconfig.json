@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -11,7 +15,7 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "plugins": [
       {
@@ -19,9 +23,28 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/games/tic-tac-toe/page.jsx", "src/app/games/snake/page.jsx", "src/app/games/ping-pong/page.jsx", "src/app/games/memory/page.jsx", "src/app/about/page.jsx", "src/app/about/components/Hero.jsx", "src/app/about/components/Hero.jsx", "src/app/about/components/AboutSection.tsx", "src/app/projects/projectcard.jsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/app/games/tic-tac-toe/page.jsx",
+    "src/app/games/snake/page.jsx",
+    "src/app/games/ping-pong/page.jsx",
+    "src/app/games/memory/page.jsx",
+    "src/app/about/page.jsx",
+    "src/app/about/components/Hero.jsx",
+    "src/app/about/components/Hero.jsx",
+    "src/app/about/components/AboutSection.tsx",
+    "src/app/projects/projectcard.jsx",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
