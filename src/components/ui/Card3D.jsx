@@ -16,27 +16,46 @@ export const CardContainer = ({
   containerClassName
 }) => {
   const containerRef = useRef(null);
+  const rectRef = useRef(null);
+  const rafRef = useRef(0);
   const [isMouseEntered, setIsMouseEntered] = useState(false);
 
   const handleMouseMove = (e) => {
-    if (!containerRef.current) return;
-    const { left, top, width, height } =
-      containerRef.current.getBoundingClientRect();
-    const x = (e.clientX - left - width / 2) / 25;
-    const y = (e.clientY - top - height / 2) / 25;
-    containerRef.current.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+    if (!containerRef.current || !rectRef.current) return;
+    const { left, top, width, height } = rectRef.current;
+    const cx = e.clientX;
+    const cy = e.clientY;
+    if (rafRef.current) return;
+    rafRef.current = requestAnimationFrame(() => {
+      rafRef.current = 0;
+      if (!containerRef.current) return;
+      const x = (cx - left - width / 2) / 25;
+      const y = (cy - top - height / 2) / 25;
+      containerRef.current.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+    });
   };
 
-  const handleMouseEnter = (e) => {
+  const handleMouseEnter = () => {
+    if (!containerRef.current) return;
+    rectRef.current = containerRef.current.getBoundingClientRect();
     setIsMouseEntered(true);
-    if (!containerRef.current) return;
   };
 
-  const handleMouseLeave = (e) => {
+  const handleMouseLeave = () => {
     if (!containerRef.current) return;
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = 0;
+    }
     setIsMouseEntered(false);
     containerRef.current.style.transform = `rotateY(0deg) rotateX(0deg)`;
   };
+
+  useEffect(() => {
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, []);
   return (
     (<MouseEnterContext.Provider value={[isMouseEntered, setIsMouseEntered]}>
       <div

@@ -20,7 +20,8 @@ const Projects = () => {
             description={project.description}
             liveLink={project.liveLink}
             repoLink={project.repoLink}
-            techStack={project.techStack} // Pass tech stack here
+            techStack={project.techStack}
+            priority={index < 2}
           />
         ))}
       </div>

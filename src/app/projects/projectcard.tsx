@@ -9,13 +9,14 @@ interface ProjectCardProps {
   liveLink?: string;
   repoLink?: string;
   techStack: string[];
+  priority?: boolean;
 }
 
-export function ProjectCard({ image, title, description, liveLink, repoLink, techStack }: ProjectCardProps) {
+export function ProjectCard({ image, title, description, liveLink, repoLink, techStack, priority = false }: ProjectCardProps) {
   return (
     <CardContainer className="inter-var" containerClassName="">
       <CardBody className="bg-black relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] border-white/[0.2] w-full h-auto rounded-xl px-6 py-8 md:p-6 border">
-        
+
         {/* Title */}
         <CardItem translateZ={50} className="text-2xl md:text-xl font-bold text-white">
           {title}
@@ -25,11 +26,15 @@ export function ProjectCard({ image, title, description, liveLink, repoLink, tec
         <CardItem translateZ={100} className="w-full mt-4 relative">
           <div className="relative h-60 w-full rounded-xl group-hover/card:shadow-xl">
             <Image
-              src={image} 
-              height={1000} 
-              width={1000} 
-              className="h-60 w-full object-cover rounded-xl" 
-              alt={title} 
+              src={image}
+              height={480}
+              width={800}
+              sizes="(max-width: 768px) 100vw, 50vw"
+              priority={priority}
+              fetchPriority={priority ? "high" : "auto"}
+              loading={priority ? "eager" : "lazy"}
+              className="h-60 w-full object-cover rounded-xl"
+              alt={title}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent rounded-xl"></div>
           </div>
@@ -43,6 +48,7 @@ export function ProjectCard({ image, title, description, liveLink, repoLink, tec
                   alt={`Technology ${index + 1}`}
                   width={32}
                   height={32}
+                  loading="lazy"
                   className="object-contain hover:scale-110 transition-transform mr-4"
                 />
               </CardItem>
