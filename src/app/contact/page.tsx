@@ -128,8 +128,14 @@ const QRCard = ({
 
   const handleCardClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setRevealed(true);
-    window.open(link, "_blank");
+    
+    if (revealed) {
+      // If already revealed, open the link
+      window.open(link, "_blank");
+    } else {
+      // If not revealed, just reveal it
+      setRevealed(true);
+    }
   };
 
   return (
