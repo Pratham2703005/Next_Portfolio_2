@@ -8,21 +8,21 @@ interface TimelineEntryCardProps {
 export default function TimelineEntryCard({ entry }: TimelineEntryCardProps) {
   return (
     <div>
-      <div className="flex gap-4">
-        <div className="w-1/2">
+      <div className="flex flex-col md:flex-row gap-4">
+        <div className="order-2 md:order-1 w-full md:w-1/2">
           <p className="mb-4 text-base font-semibold text-neutral-200">
             {entry.subtitle}
           </p>
-          <p className="mb-6 text-sm text-neutral-400">
+          <p className="hidden md:block mb-6 text-sm text-neutral-400">
             {entry.description}
           </p>
         </div>
-        <div className={`mb-6 relative w-1/2 h-48 rounded-lg overflow-hidden border ${entry.borderColor}`}>
-          <Image 
-            src={entry.image} 
-            alt={entry.imageAlt} 
-            fill 
-            className={entry.imageAlt === '100 AI Agents' ? 'object-contain' : 'object-cover'} 
+        <div className={`order-1 md:order-2 mb-2 md:mb-6 relative w-full md:w-1/2 h-48 rounded-lg overflow-hidden border ${entry.borderColor}`}>
+          <Image
+            src={entry.image}
+            alt={entry.imageAlt}
+            fill
+            className={entry.imageAlt === '100 AI Agents' ? 'object-contain' : 'object-cover'}
           />
         </div>
       </div>

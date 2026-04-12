@@ -87,7 +87,7 @@ const Home = () => {
               <div className="relative w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80">
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 blur-md opacity-50 animate-pulse" />
                 <div className="relative w-full h-full rounded-full border-4 border-purple-400 overflow-hidden">
-                  <Image src="/profile1.jpg" alt="Pratham Israni - Full Stack Developer" fill className="object-cover" priority />
+                  <Image src="/profile3.jpg" alt="Pratham Israni - Full Stack Developer" fill className="object-cover" priority />
                 </div>
               </div>
 

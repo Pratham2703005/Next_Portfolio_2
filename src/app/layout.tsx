@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     siteName: "Pratham Israni Portfolio",
     images: [
       {
-        url: "/profile1.jpg",
+        url: "/profile3.jpg",
         width: 1200,
         height: 630,
         alt: "Pratham Israni - Full-Stack Developer",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Pratham Israni - Full-Stack Developer & Innovation Builder",
     description: "SIH 2024 Finalist specializing in interactive web experiences. Building innovative solutions with modern web technologies.",
-    images: ["/profile1.jpg"],
+    images: ["/profile3.jpg"],
   },
   robots: {
     index: true,

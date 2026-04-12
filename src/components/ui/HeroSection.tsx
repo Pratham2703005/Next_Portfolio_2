@@ -17,7 +17,7 @@ export default function HeroSection() {
             <div className="w-48 h-48 md:w-64 md:h-64 mx-auto relative">
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 blur-md opacity-50 animate-pulse"></div>
               <div className="relative w-full h-full rounded-full border-4 border-purple-400 overflow-hidden">
-                <Image src="/profile1.jpg" alt="Pratham Israni" fill className="object-cover" priority />
+                <Image src="/profile3.jpg" alt="Pratham Israni" fill className="object-cover" priority />
               </div>
             </div>
           </div>
