@@ -10,6 +10,7 @@ import Footer from "@/components/shared/Footer";
 import PageHeading from "@/components/ui/PageHeading";
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
 import { myToast } from "@/utils/toast";
+import Image from "next/image";
 
 // Contact Cards Constants
 const CONTACT_CARDS = [
@@ -182,10 +183,12 @@ const QRCard = ({
           transition={{ duration: 0.3 }}
           className="w-[80%] h-[80%] flex items-center justify-center"
         >
-          <img
+          <Image
             src={qrPath}
             alt={label}
             className="w-full h-full object-contain"
+            height={200}
+            width={200}
           />
         </motion.div>
       </div>

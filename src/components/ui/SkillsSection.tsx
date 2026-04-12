@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import PageHeading from "./PageHeading";
 
 const SKILL_ICONS: Record<string, string> = {
@@ -274,11 +275,13 @@ function SkillItem({ skill, color }: { skill: string; color: string }) {
           el.style.boxShadow = `inset 0 0 20px rgba(255,255,255,0.08), 0 4px 14px rgba(0,0,0,0.3)`;
         }}
       >
-        <img
+        <Image
           src={SKILL_ICONS[skill] ?? "/skills/default.svg"}
           alt={skill}
           className="w-8 h-8 object-contain"
           style={{ filter: `drop-shadow(0 0 5px ${color}55)` }}
+          height={200}
+          width={200}
         />
       </div>
 

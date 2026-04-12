@@ -1,4 +1,5 @@
 import { MESSAGE_ZOOM_THRESHOLD } from "@/utils/default-data"
+import Image from "next/image"
 
 interface UserAvatarProps {
   name?: string,
@@ -51,10 +52,12 @@ export function UserAvatar({name, image, x, y, scale, isPublic = true }: UserAva
         style={{ width: AVATAR_SIZE, height: AVATAR_SIZE }}
       >
         {image ? (
-          <img 
+          <Image 
             src={image} 
-            alt={name} 
+            alt={name || ""} 
             className="w-full h-full object-cover"
+            width={AVATAR_SIZE}
+            height={AVATAR_SIZE}
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-white text-xl font-bold">

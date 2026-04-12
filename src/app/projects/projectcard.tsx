@@ -1,5 +1,6 @@
 import { CardContainer, CardBody, CardItem } from "@/components/ui/Card3D";
 import { ExpandableDescription } from "./ExpandableDescription";
+import Image from "next/image";
 
 interface ProjectCardProps {
   image: string;
@@ -23,7 +24,7 @@ export function ProjectCard({ image, title, description, liveLink, repoLink, tec
         {/* Image */}
         <CardItem translateZ={100} className="w-full mt-4 relative">
           <div className="relative h-60 w-full rounded-xl group-hover/card:shadow-xl">
-            <img 
+            <Image
               src={image} 
               height={1000} 
               width={1000} 
@@ -37,7 +38,7 @@ export function ProjectCard({ image, title, description, liveLink, repoLink, tec
           <div className="absolute flex flex-wrap justify-start gap-2 mt-4 w-full bottom-4 ml-4 z-90">
             {techStack.map((tech, index) => (
               <CardItem key={index} translateZ={60} className="">
-                <img
+                <Image
                   src={tech}
                   alt={`Technology ${index + 1}`}
                   width={32}
