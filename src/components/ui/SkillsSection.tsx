@@ -175,8 +175,6 @@ export default function SkillsSection() {
       </div>
 
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@800&display=swap');
-
         .iso-item { position: relative; cursor: pointer; }
 
         /* icon box */
@@ -208,7 +206,7 @@ export default function SkillsSection() {
           z-index: 999;
           border-radius: 6px;
           padding: 4px 9px;
-          font-family: 'Space Mono', monospace;
+          font-family: var(--font-space-mono), monospace;
           font-size: 0.6rem;
           font-weight: 700;
           letter-spacing: 0.05em;
@@ -280,8 +278,9 @@ function SkillItem({ skill, color }: { skill: string; color: string }) {
           alt={skill}
           className="w-8 h-8 object-contain"
           style={{ filter: `drop-shadow(0 0 5px ${color}55)` }}
-          height={200}
-          width={200}
+          height={32}
+          width={32}
+          loading="lazy"
         />
       </div>
 

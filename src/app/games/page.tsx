@@ -44,7 +44,7 @@ export default function Games() {
                 </div>
                 <h2 className="text-xl font-semibold text-white">{game.name}</h2>
               </div>
-              <p className="text-white/70 text-sm md:text-md">{game.description}</p>
+              <p className="text-white/85 text-sm md:text-md">{game.description}</p>
               <div className="mt-4 text-purple-400 flex items-center text-sm font-medium group-hover:translate-x-1 transition-transform">
                 Play now <span className="ml-1">→</span>
               </div>

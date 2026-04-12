@@ -125,22 +125,22 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                 </div>
               </div>
 
-              <h3
+              <h2
                 className="hidden md:block text-xl md:pl-20 md:text-5xl font-bold transition-colors duration-500"
                 style={{ color: activeDots[index] ? "#93c5fd" : "#525252" }}
               >
                 {item.title}
-              </h3>
+              </h2>
             </div>
 
             {/* Content */}
             <div className="relative pl-20 pr-4 md:pl-4 w-full">
-              <h3
+              <h2
                 className="md:hidden block text-2xl mb-4 text-left font-bold transition-colors duration-500"
                 style={{ color: activeDots[index] ? "#93c5fd" : "#525252" }}
               >
                 {item.title}
-              </h3>
+              </h2>
               {item.content}
             </div>
           </div>

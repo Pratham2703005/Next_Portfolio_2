@@ -11,9 +11,9 @@ export const metadata = {
 };
 
 export default function TimelinePage() {
-  const data = timelineData.map((entry) => ({
+  const data = timelineData.map((entry, index) => ({
     title: entry.title,
-    content: <TimelineEntryCard entry={entry} />,
+    content: <TimelineEntryCard entry={entry} priority={index === 0} />,
   }));
 
   return (

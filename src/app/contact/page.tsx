@@ -140,12 +140,21 @@ const QRCard = ({
 
   return (
     <motion.div
-      className="border border-white/[0.2] group/qr-card flex items-center justify-center dark:border-white/[0.2] w-full aspect-square relative cursor-pointer"
+      role="button"
+      tabIndex={0}
+      aria-label={revealed ? `Open ${label}` : `Reveal ${label} QR code`}
+      className="border border-white/[0.2] group/qr-card flex items-center justify-center dark:border-white/[0.2] w-full aspect-square relative cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-400"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay }}
       onMouseEnter={handleInteraction}
       onClick={handleCardClick}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleCardClick(e as unknown as React.MouseEvent);
+        }
+      }}
     >
       <CornerIcon className="absolute h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 -top-2 sm:-top-3 -left-2 sm:-left-3 text-white" />
       <CornerIcon className="absolute h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 -bottom-2 sm:-bottom-3 -left-2 sm:-left-3 text-white" />
@@ -193,8 +202,10 @@ const QRCard = ({
             src={qrPath}
             alt={label}
             className="w-full h-full object-contain"
-            height={200}
-            width={200}
+            height={160}
+            width={160}
+            sizes="(max-width: 640px) 40vw, 160px"
+            loading="lazy"
           />
         </motion.div>
       </div>

@@ -3,9 +3,10 @@ import { TimelineEntryData } from '@/data/timeline-data';
 
 interface TimelineEntryCardProps {
   entry: TimelineEntryData;
+  priority?: boolean;
 }
 
-export default function TimelineEntryCard({ entry }: TimelineEntryCardProps) {
+export default function TimelineEntryCard({ entry, priority = false }: TimelineEntryCardProps) {
   return (
     <div>
       <div className="flex flex-col md:flex-row gap-4">
@@ -13,7 +14,7 @@ export default function TimelineEntryCard({ entry }: TimelineEntryCardProps) {
           <p className="mb-4 text-base font-semibold text-neutral-200">
             {entry.subtitle}
           </p>
-          <p className="hidden md:block mb-6 text-sm text-neutral-400">
+          <p className="hidden md:block mb-6 text-sm text-neutral-300">
             {entry.description}
           </p>
         </div>
@@ -22,6 +23,10 @@ export default function TimelineEntryCard({ entry }: TimelineEntryCardProps) {
             src={entry.image}
             alt={entry.imageAlt}
             fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            priority={priority}
+            fetchPriority={priority ? 'high' : 'auto'}
+            loading={priority ? 'eager' : 'lazy'}
             className={entry.imageAlt === '100 AI Agents' ? 'object-contain' : 'object-cover'}
           />
         </div>
