@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSession } from 'next-auth/react';
 import { Heart } from 'lucide-react';
-import toast from 'react-hot-toast';
+import { myToast } from '@/utils/toast';
 
 interface LikeButtonProps {
   blogId: string;
@@ -45,7 +45,11 @@ export default function LikeButton({ blogId, initialLikeCount, isAuthenticated }
 
   const handleLike = async () => {
     if (!isAuthenticated || !session?.user) {
-      toast.error('Please sign in to like this post');
+      myToast({
+        message: 'Please sign in to like this post',
+        type: 'error',
+        robotVariant: 'angry',
+      });
       return;
     }
     
@@ -60,14 +64,22 @@ export default function LikeButton({ blogId, initialLikeCount, isAuthenticated }
     
     // Limit to 10 requests per 10 seconds
     if (likeRequestCount.current >= 10) {
-      toast.error('Too many requests. Please wait a moment.');
+      myToast({
+        message: 'Too many requests. Please wait a moment.',
+        type: 'error',
+        robotVariant: 'angry2',
+      });
       console.warn('Rate limit exceeded for likes');
       return;
     }
     
     // Prevent multiple rapid requests (debounce)
     if (timeDiff < 1000) {
-      toast.error('Please wait before liking again');
+      myToast({
+        message: 'Please wait before liking again',
+        type: 'error',
+        robotVariant: 'angry',
+      });
       console.warn('Too many requests, please wait');
       return;
     }
@@ -94,18 +106,31 @@ export default function LikeButton({ blogId, initialLikeCount, isAuthenticated }
         
         // Update count from server response
         setLikeCount(data.likeCount);
+        myToast({
+          message: data.liked ? 'Post liked!' : 'Like removed',
+          type: 'info',
+          robotVariant: data.liked ? 'wave' : 'thumbsUp',
+        })
       } else {
         // Revert optimistic update on error
         setLiked(wasLiked);
         setLikeCount(currentCount);
         const error = await response.json();
-        toast.error(error.error || 'Failed to like post');
+        myToast({
+          message: error.error || 'Failed to like post',
+          type: 'error',
+          robotVariant: 'angry',
+        });
       }
     } catch {
       // Revert optimistic update on error
       setLiked(wasLiked);
       setLikeCount(currentCount);
-      toast.error('Failed to like post');
+      myToast({
+        message: 'Failed to like post',
+        type: 'error',
+        robotVariant: 'angry2',
+      });
     }
   };
 

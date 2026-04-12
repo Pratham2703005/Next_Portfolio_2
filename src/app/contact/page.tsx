@@ -5,12 +5,11 @@ import { motion } from "framer-motion";
 import { Linkedin, Github, Instagram } from "lucide-react";
 import { BsTwitterX } from "react-icons/bs";
 import CurrentButton from "@/components/ui/CurrentButton";
-import { Toaster } from "react-hot-toast";
-import toast from "react-hot-toast";
 import emailjs from "emailjs-com";
 import Footer from "@/components/shared/Footer";
 import PageHeading from "@/components/ui/PageHeading";
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
+import { myToast } from "@/utils/toast";
 
 // Contact Cards Constants
 const CONTACT_CARDS = [
@@ -269,7 +268,12 @@ const Contact = () => {
           process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "",
         );
 
-        toast.success("Message sent successfully! I'll get back to you soon.");
+        myToast({
+          message:"Message sent successfully! I'll get back to you soon.",
+          type: "success",
+          robotVariant: "wave",
+        });
+
         setFormData({
           name: "",
           email: "",
@@ -278,9 +282,11 @@ const Contact = () => {
         setErrors({});
       } catch (error) {
         console.error("EmailJS Error:", error);
-        toast.error(
-          "Failed to send message. Please try again or contact me directly.",
-        );
+        myToast({
+          message: "Failed to send message. Please try again or contact me directly.",
+          type: "error",
+          robotVariant: "error",
+        });
       } finally {
         setIsSubmitting(false);
       }
@@ -456,31 +462,6 @@ const Contact = () => {
             </div>
           </div>
         </div>
-
-        {/* Toast notifications */}
-        <Toaster
-          position="top-right"
-          toastOptions={{
-            duration: 4000,
-            style: {
-              background: "#1a1a1a",
-              color: "#fff",
-              border: "1px solid #3b82f6",
-            },
-            success: {
-              iconTheme: {
-                primary: "#10b981",
-                secondary: "#fff",
-              },
-            },
-            error: {
-              iconTheme: {
-                primary: "#ef4444",
-                secondary: "#fff",
-              },
-            },
-          }}
-        />
       </section>
       <Footer />
     </>
