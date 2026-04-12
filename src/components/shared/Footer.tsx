@@ -23,14 +23,14 @@ export default function Footer() {
               <Link href="/projects" className="block text-gray-400 hover:text-purple-400 transition-colors text-sm">
                 Projects
               </Link>
-              <Link href="/blog" className="block text-gray-400 hover:text-purple-400 transition-colors text-sm">
-                Blog
+              <Link href="/timeline" className="block text-gray-400 hover:text-purple-400 transition-colors text-sm">
+                Timeline
+              </Link>
+              <Link href="/skills" className="block text-gray-400 hover:text-purple-400 transition-colors text-sm">
+                Skills
               </Link>
               <Link href="/contact" className="block text-gray-400 hover:text-purple-400 transition-colors text-sm">
                 Contact Me
-              </Link>
-              <Link href="/messages" className="block text-gray-400 hover:text-purple-400 transition-colors text-sm">
-                Messages
               </Link>
               <Link href="/resume" className="block text-gray-400 hover:text-purple-400 transition-colors text-sm">
                 Resume
